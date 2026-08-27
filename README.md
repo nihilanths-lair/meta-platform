@@ -15,6 +15,6 @@ meta-platform/                  <-- Корневой репозиторий (Git
 │   ├── re/                     <-- Папка плеера (Зелёная зона)
 │   ├── adte/                   <-- Папка прикладного SDK (Жёлтая зона)
 │   └── sdte/                   <-- Папка системного SDK (Красная зона)
-├── mde.c (closed source code)  <-- Исходный код оркестратора
+├── mde.c (closed source code)  <-- Закрытый исходный код оркестратора
 └── mde.exe                     <-- Сердце системы (Managed Development Environment)
 </pre>
