@@ -13,13 +13,13 @@ meta-platform/
 ├── meta/
 │   ├── re/ 🟢
 │   │   ├── re.c 🔒
-│   │   └── re.exe 📟    <-- [🇺🇸] Meta Runtime Environment / [🇷🇺] Мета Среда Выполнения
+│   │   └── re.exe ⌨️    <-- [🇺🇸] Meta Runtime Environment / [🇷🇺] Мета Среда Выполнения
 │   ├── adte/ 🟡
 │   │   ├── adte.c 🔒
-│   │   └── adte.exe 📟  <-- [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
+│   │   └── adte.exe ⌨️  <-- [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
 │   └── sdte/ 🔴
 │       ├── sdte.c 🔒
-│       └── sdte.exe 📟  <-- [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
+│       └── sdte.exe ⌨️  <-- [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
 ├── mde.c 🔒
-└── mde.exe 📟           <-- Оркестратор ─ сердце системы (Managed Development Environment)
+└── mde.exe ⌨️           <-- Оркестратор ─ сердце системы (Managed Development Environment)
 </pre>
