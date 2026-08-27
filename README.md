@@ -17,11 +17,11 @@ meta-platform/
 │   ├── adte/ 🟡
 │   │   ├── adte.c 🔐
 │   │   ├── adte.exe ⌨️  <-- [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
-│   │   └── adte-gui.exe 🖱️
+│   │   <s>└── adte-gui.exe 🖱️</s>
 │   └── sdte/ 🔴
 │       ├── sdte.c 🔐
 │       ├── sdte.exe ⌨️  <-- [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
-│       └── sdte-gui.exe 🖱️
+│       <s>└── sdte-gui.exe 🖱️</s>
 ├── mde.c 🔐
 ├── mde.exe ⌨️           <-- Оркестратор ─ сердце системы (Managed Development Environment)
 <s>└── mde-gui.exe 🖱️</s>
