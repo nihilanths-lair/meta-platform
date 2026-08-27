@@ -12,7 +12,7 @@ meta-platform/
 │   │   ├── re.c 🔒
 │   │   └── re.exe (cli)    <-- [🇺🇸] Meta Runtime Environment / [🇷🇺] Мета Среда Выполнения
 │   ├── adte/ 🟡
-│   │   ├── adte.c 🔒       <-- Закрытый исходный код прикладного SDK
+│   │   ├── adte.c 🔒
 │   │   └── adte.exe (cli)  <-- [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
 │   └── sdte/ 🔴
 │       ├── sdte.c 🔒       <-- Закрытый исходный код системного SDK
