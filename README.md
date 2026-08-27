@@ -23,6 +23,5 @@ meta-platform/
 │       ├── sdte.exe ⌨️  <-- [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
 │       <s>└── sdte-gui.exe 🖱️</s>
 ├── mde.c 🔐
-├── mde.exe ⌨️           <-- Оркестратор ─ сердце системы (Managed Development Environment)
-<s>└── mde-gui.exe 🖱️</s>
+└── mde.exe ⌨️           <-- Оркестратор ─ сердце системы (Managed Development Environment)
 </pre>
