@@ -2,7 +2,7 @@
 <pre>
 Обозначения:
 🔓 ─ Открытый исходный код
-🔒 ─ Закрытый исходный код
+🔐 ─ Закрытый исходный код
 ⚫ ─ Чёрная зона
 🔴 ─ Красная зона, зона системной разработки ПО (System DT/SD Environment)
 🟡 ─ Жёлтая зона, зона прикладной разработки ПО (Application DT/SD Environment)
@@ -13,14 +13,14 @@
 meta-platform/
 ├── meta/
 │   ├── re/ 🟢
-│   │   ├── re.c 🔒
+│   │   ├── re.c 🔐
 │   │   └── re.exe ⌨️    <-- [🇺🇸] Meta Runtime Environment / [🇷🇺] Мета Среда Выполнения
 │   ├── adte/ 🟡
-│   │   ├── adte.c 🔒
+│   │   ├── adte.c 🔐
 │   │   └── adte.exe ⌨️  <-- [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
 │   └── sdte/ 🔴
-│       ├── sdte.c 🔒
+│       ├── sdte.c 🔐
 │       └── sdte.exe ⌨️  <-- [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
-├── mde.c 🔒
+├── mde.c 🔐
 └── mde.exe ⌨️           <-- Оркестратор ─ сердце системы (Managed Development Environment)
 </pre>
