@@ -6,7 +6,7 @@
  ├── /madte           <-- Папка прикладного SDK (Жёлтая зона)
  ├── /msdte           <-- Папка системного SDK (Красная зона)
  ├── mde.c            <-- Исходный код оркестратора
- └── mde.exe          <-- Скомпилированное сердце системы (Managed Development Environment)
+ └── mde.exe          <-- Сердце системы (Managed Development Environment)
 </pre>
 -->
 <pre>
@@ -16,5 +16,5 @@ meta-platform/        <-- Корневой репозиторий (GitHub)
 │   ├── adte/         <-- Папка прикладного SDK (Жёлтая зона)
 │   └── sdte/         <-- Папка системного SDK (Красная зона)
 ├── mde.c             <-- Исходный код оркестратора
-└── mde.exe           <-- Скомпилированное сердце системы (Managed Development Environment)
+└── mde.exe           <-- Сердце системы (Managed Development Environment)
 </pre>
