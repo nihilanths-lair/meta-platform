@@ -6,8 +6,8 @@
 🔴 ─ Красная зона, зона системной разработки ПО (System [Development Tools / Software Development] Environment)
 🟡 ─ Жёлтая зона, зона прикладной разработки ПО (Application [Development Tools / Software Development] Environment)
 🟢 ─ Зелёная зона, зона конечного пользователя (User-end)
-📟/⌨️ ─ Command Line Interface (CLI) / Интерфейс командной строки (ИКС)
-🖼️/🎨/🖱️ ─ Graphical User Interface (GUI) / Графический интерфейс пользователя (ГИП)
+<!--📟/-->⌨️ ─ Command Line Interface (CLI) / Интерфейс командной строки (ИКС)
+<!--🖼️/🎨/-->🖱️ ─ Graphical User Interface (GUI) / Графический интерфейс пользователя (ГИП)
 
 meta-platform/
 ├── meta/
