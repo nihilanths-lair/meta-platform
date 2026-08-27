@@ -2,9 +2,9 @@
 <pre>
 Обозначения:
 🔒 ─ Закрытый исходный код
-🟢 ─ Зелёная зона, зона конечного пользователя (User-end)
-🟡 ─ Жёлтая зона, зона прикладной разработки ПО (Application Development Tools Environment)
 🔴 ─ Красная зона, зона системной разработки ПО (System Development Tools Environment)
+🟡 ─ Жёлтая зона, зона прикладной разработки ПО (Application Development Tools Environment)
+🟢 ─ Зелёная зона, зона конечного пользователя (User-end)
 
 meta-platform/
 ├── meta/
