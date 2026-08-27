@@ -15,7 +15,7 @@ meta-platform/
 │   │   ├── adte.c 🔒
 │   │   └── adte.exe (cli)  <-- [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
 │   └── sdte/ 🔴
-│       ├── sdte.c 🔒       <-- Закрытый исходный код системного SDK
+│       ├── sdte.c 🔒
 │       └── sdte.exe (cli)
 ├── mde.c 🔒                <-- Закрытый исходный код оркестратора
 └── mde.exe (cli)           <-- Сердце системы (Managed Development Environment)
