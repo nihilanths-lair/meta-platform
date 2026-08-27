@@ -2,6 +2,7 @@
 <pre>
 Обозначения:
 🔒 ─ Закрытый исходный код
+⚫ ─ Чёрная зона
 🔴 ─ Красная зона, зона системной разработки ПО (System [Development Tools / Software Development] Environment)
 🟡 ─ Жёлтая зона, зона прикладной разработки ПО (Application [Development Tools / Software Development] Environment)
 🟢 ─ Зелёная зона, зона конечного пользователя (User-end)
