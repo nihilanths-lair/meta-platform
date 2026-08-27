@@ -10,7 +10,7 @@ meta-platform/
 ├── meta/
 │   ├── re/ 🟢
 │   │   ├── re.c 🔒         <-- Закрытый исходный код плеера
-│   │   └── re.exe (cli)    <-- 🇺🇸 Meta Runtime Environment / 🇷🇺 Мета Среда Выполнения
+│   │   └── re.exe (cli)    <-- [🇺🇸] Meta Runtime Environment / [🇷🇺] Мета Среда Выполнения
 │   ├── adte/ 🟡
 │   │   ├── adte.c 🔒       <-- Закрытый исходный код прикладного SDK
 │   │   └── adte.exe (cli)  <-- 
