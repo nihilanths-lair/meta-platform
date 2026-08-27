@@ -17,6 +17,6 @@ meta-platform/
 │   └── sdte/ 🔴
 │       ├── sdte.c 🔒
 │       └── sdte.exe (cli)  <-- [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
-├── mde.c 🔒                <-- Оркестратор
-└── mde.exe (cli)           <-- Сердце системы (Managed Development Environment)
+├── mde.c 🔒
+└── mde.exe (cli)           <-- Оркестратор ─ сердце системы (Managed Development Environment)
 </pre>
