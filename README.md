@@ -4,12 +4,12 @@
 meta-platform/
 ├── meta/
 │   ├── dte/ <-- Модули управления компонентами M^DTE (^A/S)
-│   │   ├── application/ 🟡
+│   │   ├── app/ 🟡
 │   │   │   ├── ui/
 │   │   │   ├── adte.c 🔐
 │   │   │   ├── adte.exe ⌨️
 │   │   │   <s>└── adte-gui.exe 🖱️</s>
-│   │   ├── system/ 🔴
+│   │   ├── sys/ 🔴
 │   │   │   ├── ui/
 │   │   │   ├── sdte.c 🔐
 │   │   │   ├── sdte.exe ⌨️
