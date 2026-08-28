@@ -28,8 +28,7 @@ meta-platform/
 🔐 ─ Закрытый исходный код
 <s>⚫ ─ Чёрная зона, зона системной разработки микро-ПО (Meta Bare-Metal Environment)</s>
 🔴:
- [🇺🇸] Meta System Development Tools Environment
- [🇷🇺] Мета Среда Инструментов Системной Разработки
+ [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
 🟡:
  [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
 🟢: [🇺🇸] Meta Runtime Environment / [🇷🇺] Мета Среда Выполнения
