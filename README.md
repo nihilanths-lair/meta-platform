@@ -6,7 +6,8 @@
 🔴 ─ Красная зона, зона системной разработки ПО (System DT/SD Environment)
 🟡 ─ Жёлтая зона, зона прикладной разработки ПО (Application DT/SD Environment)
 🟢 ─ Зелёная зона, зона конечного пользователя (User-end)
-[🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
+ [🇺🇸] Meta System Development Tools Environment
+ [🇷🇺] Мета Среда Инструментов Системной Разработки
 <!--📟/-->⌨️ ─ Command Line Interface (CLI) / Интерфейс командной строки (ИКС)
 <!--🖼️/🎨/-->🖱️ ─ Graphical User Interface (GUI) / Графический интерфейс пользователя (ГИП)
 <!--
