@@ -8,9 +8,10 @@ meta-platform/
 │   │   │   ├── ui/
 │   │   │   │   ├── cli/
 │   │   │   │   └── gui/
-│   │   │   ├── adte.c 🔐
-│   │   │   ├── adte.exe ⌨️
-│   │   │   <s>└── adte-gui.exe 🖱️</s>
+│   │   │   ├── adte-cli.c 🔐
+│   │   │   ├── adte-cli.exe ⌨️
+│   │   │   ├── adte-gui.c 🔐
+│   │   │   └── adte-gui.exe 🖱️
 │   │   ├── sys/ 🔴
 │   │   │   ├── ui/
 │   │   │   │   ├── cli/
