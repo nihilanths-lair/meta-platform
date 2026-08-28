@@ -1,4 +1,27 @@
 ### 🗺️ Карта навигации: Общая структура (Иерархия)
+
+<pre>
+meta-platform/
+├── meta/
+│   ├── dte/
+│   │   ├── adte/ 🟡
+│   │   │   ├── adte.c 🔐
+│   │   │   ├── adte.exe ⌨️
+│   │   │   <s>└── adte-gui.exe 🖱️</s>
+│   │   ├── sdte/ 🔴
+│   │   │   ├── sdte.c 🔐
+│   │   │   ├── sdte.exe ⌨️
+│   │   │   <s>└── sdte-gui.exe 🖱️</s>
+│   │   ├── <s>dte-gui.exe 🖱️</s>        <-- Общий модуль управления компонентами M^DTE (^A/S)
+│   │   ├── dte.c 🔐
+│   │   └── dte.exe ⌨️           <-- Общий модуль управления компонентами M^DTE (^A/S)
+│   └── re/ 🟢
+│       ├── re.c 🔐
+│       └── re.exe ⌨️
+├── mde.c 🔐
+└── mde.exe ⌨️           <-- Оркестратор ─ диспетчер задач мета-платформы (Managed Development Environment)
+</pre>
+
 <pre>
 Обозначения:
 🔐 ─ Закрытый исходный код
@@ -31,25 +54,4 @@ meta-platform/
 ├── mde.c 🔐
 └── mde.exe ⌨️           <-- Оркестратор ─ сердце системы (Managed Development Environment)
 -->
-</pre>
-<pre>
-meta-platform/
-├── meta/
-│   ├── dte/
-│   │   ├── adte/ 🟡
-│   │   │   ├── adte.c 🔐
-│   │   │   ├── adte.exe ⌨️
-│   │   │   <s>└── adte-gui.exe 🖱️</s>
-│   │   ├── sdte/ 🔴
-│   │   │   ├── sdte.c 🔐
-│   │   │   ├── sdte.exe ⌨️
-│   │   │   <s>└── sdte-gui.exe 🖱️</s>
-│   │   ├── <s>dte-gui.exe 🖱️</s>        <-- Общий модуль управления компонентами M^DTE (^A/S)
-│   │   ├── dte.c 🔐
-│   │   └── dte.exe ⌨️           <-- Общий модуль управления компонентами M^DTE (^A/S)
-│   └── re/ 🟢
-│       ├── re.c 🔐
-│       └── re.exe ⌨️
-├── mde.c 🔐
-└── mde.exe ⌨️           <-- Оркестратор ─ диспетчер задач мета-платформы (Managed Development Environment)
 </pre>
