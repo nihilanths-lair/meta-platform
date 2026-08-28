@@ -33,9 +33,7 @@ meta-platform/
 🟡:
  [🇺🇸] Meta Application Development Tools Environment
  [🇷🇺] Мета Среда Инструментов Прикладной Разработки
-🟢:
- [🇺🇸] Meta Runtime Environment
- [🇷🇺] Мета Среда Выполнения
+🟢: [🇺🇸] Meta Runtime Environment / [🇷🇺] Мета Среда Выполнения
 <!--📟/-->⌨️ ─ [🇺🇸] Command Line Interface (CLI) / [🇷🇺] Интерфейс командной строки (ИКС)
 <!--🖼️/🎨/-->🖱️ ─ [🇺🇸] Graphical User Interface (GUI) / [🇷🇺] Графический интерфейс пользователя (ГИП)
 <!--
