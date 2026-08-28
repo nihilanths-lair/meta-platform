@@ -5,6 +5,8 @@
 <s>⚫ ─ Чёрная зона, зона системной разработки микро-ПО (Meta Bare-Metal Environment)</s>
 🔴 ─ Красная зона, зона системной разработки ПО (System DT/SD Environment)
 🟡 ─ Жёлтая зона, зона прикладной разработки ПО (Application DT/SD Environment)
+ [🇺🇸] Meta Application Development Tools Environment
+ [🇷🇺] Мета Среда Инструментов Прикладной Разработки
 🟢 ─ Зелёная зона, зона конечного пользователя (User-end)
  [🇺🇸] Meta System Development Tools Environment
  [🇷🇺] Мета Среда Инструментов Системной Разработки
@@ -34,7 +36,7 @@ meta-platform/
 │   ├── dte/
 │   │   ├── adte/ 🟡
 │   │   │   ├── adte.c 🔐
-│   │   │   ├── adte.exe ⌨️  <-- [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
+│   │   │   ├── adte.exe ⌨️
 │   │   │   <s>└── adte-gui.exe 🖱️</s>
 │   │   ├── sdte/ 🔴
 │   │   │   ├── sdte.c 🔐
