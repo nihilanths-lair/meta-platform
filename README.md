@@ -5,6 +5,7 @@ meta-platform/
 ├── meta/
 │   ├── dte/ <-- Модули управления компонентами M^DTE (^A/S)
 │   │   ├── adte/ 🟡
+│   │   │   ├── ui/
 │   │   │   ├── adte.c 🔐
 │   │   │   ├── adte.exe ⌨️
 │   │   │   <s>└── adte-gui.exe 🖱️</s>
