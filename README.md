@@ -7,7 +7,11 @@ meta-platform/
 │   │   ├── app/ 🟡
 │   │   │   ├── ui/
 │   │   │   │   ├── cli/
+│   │   │   │   │   ├── 
+│   │   │   │   │   └── 
 │   │   │   │   └── gui/
+│   │   │   │       ├── 
+│   │   │   │       └── 
 │   │   │   ├── <s>adte-cli.c 🔐</s>
 │   │   │   ├── <s>adte-cli.exe ⌨️</s>
 │   │   │   ├── <s>adte-gui.c 🔐</s>
