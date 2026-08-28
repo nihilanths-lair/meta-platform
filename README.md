@@ -24,7 +24,6 @@ meta-platform/
 
 #### Обозначения:
 
-<pre>
 🔐 ─ Закрытый исходный код
 <s>⚫ ─ Чёрная зона, зона системной разработки микро-ПО (Meta Bare-Metal Environment)</s>
 🔴 ─ Красная зона, зона системной разработки ПО (System DT/SD Environment)
@@ -55,4 +54,3 @@ meta-platform/
 ├── mde.c 🔐
 └── mde.exe ⌨️           <-- Оркестратор ─ сердце системы (Managed Development Environment)
 -->
-</pre>
