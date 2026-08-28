@@ -22,8 +22,9 @@ meta-platform/
 └── mde.exe ⌨️           <-- Оркестратор ─ диспетчер задач мета-платформы (Managed Development Environment)
 </pre>
 
+###### Обозначения:
+
 <pre>
-Обозначения:
 🔐 ─ Закрытый исходный код
 <s>⚫ ─ Чёрная зона, зона системной разработки микро-ПО (Meta Bare-Metal Environment)</s>
 🔴 ─ Красная зона, зона системной разработки ПО (System DT/SD Environment)
