@@ -16,18 +16,18 @@ meta-platform/ <-- Общий размер (в байтах): 0
 │   │   │   ├── <s>adte-cli.exe ⌨️</s>
 │   │   │   ├── <s>adte-gui.c 🔐</s>
 │   │   │   └── <s>adte-gui.exe 🖱️</s>
-│   │   ├── sys/ 🔴 <-- Этот компонент необходим для скачивания исключительно системным разработчикам
+│   │   ├── sys/
 │   │   │   ├── ui/
 │   │   │   │   ├── cli/
 │   │   │   │   │   ├── sdte.c 🔐
-│   │   │   │   │   └── sdte.exe ⌨️
+│   │   │   │   │   └── sdte.exe [🔴|⌨️]
 │   │   │   │   └── gui/
 │   │   │   │       ├── <s>sdte.c 🔐</s>
-│   │   │   │       └── <s>sdte.exe 🖱️</s>
+│   │   │   │       └── <s>sdte.exe [🔴|🖱️]</s>
 │   │   │   ├── <s>sdte-cli.c 🔐</s>
-│   │   │   ├── <s>sdte-cli.exe ⌨️</s>
+│   │   │   ├── <s>sdte-cli.exe [🔴|⌨️]</s>
 │   │   │   ├── <s>sdte-gui.c 🔐</s>
-│   │   │   └── <s>sdte-gui.exe 🖱️</s>
+│   │   │   └── <s>sdte-gui.exe [🔴|🖱️]</s>
 │   │   ├── ui/
 │   │   │   ├── cli/
 │   │   │   │   ├── dte.c 🔐
