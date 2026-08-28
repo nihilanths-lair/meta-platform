@@ -38,7 +38,7 @@ meta-platform/
 │   │   ├── <s>dte-cli.c 🔐</s>
 │   │   ├── <s>dte-cli.exe ⌨️</s>
 │   │   ├── <s>dte-gui.c 🔐</s>
-│   │   ├── <s>dte-gui.exe 🖱️</s>
+│   │   └── <s>dte-gui.exe 🖱️</s>
 │   └── re/ 🟢
 │       ├── re.c 🔐
 │       └── re.exe ⌨️
