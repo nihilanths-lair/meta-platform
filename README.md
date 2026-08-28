@@ -52,9 +52,9 @@ meta-platform/ <-- Общий размер (в байтах): 0
 <pre>
 🔐: Закрытый исходный код
 <s>⚫: [🇺🇸] ─ / [🇷🇺] ─</s>
-🔴: [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
-🟣: [🇺🇸] Two-in-one / [🇷🇺] Два в одном</s>
-🟡: [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
+🔴: [🇺🇸] Meta System Development Tools Environment (MSDTE) / [🇷🇺] Мета Среда Инструментов Системной Разработки (МСИСР)
+🟣: [🇺🇸] Two-in-one ─ MSDTE+MADTE/ [🇷🇺] Два в одном ─ МСИСР+МСИПР</s>
+🟡: [🇺🇸] Meta Application Development Tools Environment (MADTE) / [🇷🇺] Мета Среда Инструментов Прикладной Разработки (МСИПР)
 🟢: [🇺🇸] Meta Runtime Environment (MRE) / [🇷🇺] Мета Среда Выполнения (МСВ)
 <!--📟/-->⌨️: [🇺🇸] Command Line Interface (CLI) / [🇷🇺] Интерфейс командной строки (ИКС)
 <!--🖼️/🎨/-->🖱️: [🇺🇸] Graphical User Interface (GUI) / [🇷🇺] Графический интерфейс пользователя (ГИП)
