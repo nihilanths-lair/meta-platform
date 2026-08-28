@@ -27,7 +27,7 @@ meta-platform/
 │       ├── re.c 🔐
 │       └── re.exe ⌨️
 ├── mde.c 🔐
-└── mde.exe ⌨️  <-- Оркестратор ─ диспетчер задач мета-платформы (Managed Development Environment)
+└── mde.exe ⌨️ <-- Оркестратор ─ диспетчер задач мета-платформы (Managed Development Environment)
 </pre>
 
 #### Обозначения:
