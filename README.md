@@ -26,7 +26,7 @@ meta-platform/
 
 <pre>
 🔐: Закрытый исходный код
-<s>⚫: [🇺🇸] ─ / ─</s>
+<s>⚫: [🇺🇸] ─ / [🇷🇺] ─</s>
 🔴: [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
 🟡: [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
 🟢: [🇺🇸] Meta Runtime Environment (MRE) / [🇷🇺] Мета Среда Выполнения (МСВ)
