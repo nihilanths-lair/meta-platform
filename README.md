@@ -1,7 +1,7 @@
 ### 🗺️ Карта навигации: Общая структура (Иерархия)
 
 <pre>
-meta-platform/  Overall size: 0 byte.
+meta-platform/ <-- Overall size: 0 byte
 ├── meta/
 │   ├── dte/ <-- Модули управления компонентами M^DTE (^A/S)
 │   │   ├── app/ 🟡
