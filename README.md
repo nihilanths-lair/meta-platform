@@ -27,13 +27,13 @@ meta-platform/
 <pre>
 🔐 ─ Закрытый исходный код
 <s>⚫ ─ Чёрная зона, зона системной разработки микро-ПО (Meta Bare-Metal Environment)</s>
-🔴 ─ Красная зона, зона системной разработки ПО (System DT/SD Environment)
+🔴:
  [🇺🇸] Meta System Development Tools Environment
  [🇷🇺] Мета Среда Инструментов Системной Разработки
-🟡 ─ Жёлтая зона, зона прикладной разработки ПО (Application DT/SD Environment)
+🟡:
  [🇺🇸] Meta Application Development Tools Environment
  [🇷🇺] Мета Среда Инструментов Прикладной Разработки
-🟢 ─ Зелёная зона, зона конечного пользователя (User-end)
+🟢:
  [🇺🇸] Meta Runtime Environment
  [🇷🇺] Мета Среда Выполнения
 <!--📟/-->⌨️ ─ Command Line Interface (CLI) / Интерфейс командной строки (ИКС)
