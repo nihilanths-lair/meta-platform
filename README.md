@@ -16,8 +16,8 @@ meta-platform/
 │   │   │   ├── ui/
 │   │   │   │   ├── cli/
 │   │   │   │   └── gui/
-│   │   │   ├── sdte-cli.c 🔐
-│   │   │   ├── sdte-cli.exe ⌨️
+│   │   │   ├── <s>sdte-cli.c 🔐</s>
+│   │   │   ├── <s>sdte-cli.exe ⌨️</s>
 │   │   │   ├── <s>sdte-gui.c 🔐</s>
 │   │   │   └── <s>sdte-gui.exe 🖱️</s>
 │   │   ├── ui/
