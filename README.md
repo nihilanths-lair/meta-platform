@@ -50,16 +50,16 @@ meta-platform/ <-- Общий размер (в байтах): 0
 #### Обозначения:
 
 <pre>
-🔐: Закрытый исходный код
-<s>⚫: [🇺🇸] ─ / [🇷🇺] ─</s>
-🔴: [🇺🇸] Meta System Development Tools Environment (MSDTE) / [🇷🇺] Мета Среда Инструментов Системной Разработки (МСИСР)
+🔐 Закрытый исходный код
+<s>⚫ [🇺🇸] ─ / [🇷🇺] ─</s>
+🔴 [🇺🇸] Meta System Development Tools Environment (MSDTE) / [🇷🇺] Мета Среда Инструментов Системной Разработки (МСИСР)
   \
-  🟣: [🇺🇸] Two-in-one ─ MSDTE + MADTE/ [🇷🇺] Два в одном ─ МСИСР + МСИПР</s>
+  🟣 [🇺🇸] Two-in-one ─ MSDTE + MADTE/ [🇷🇺] Два в одном ─ МСИСР + МСИПР</s>
   /
-🟡: [🇺🇸] Meta Application Development Tools Environment (MADTE) / [🇷🇺] Мета Среда Инструментов Прикладной Разработки (МСИПР)
-🟢: [🇺🇸] Meta Runtime Environment (MRE) / [🇷🇺] Мета Среда Выполнения (МСВ)
-<!--📟/-->⌨️: [🇺🇸] Command Line Interface (CLI) / [🇷🇺] Интерфейс командной строки (ИКС)
-<!--🖼️/🎨/-->🖱️: [🇺🇸] Graphical User Interface (GUI) / [🇷🇺] Графический интерфейс пользователя (ГИП)
+🟡 [🇺🇸] Meta Application Development Tools Environment (MADTE) / [🇷🇺] Мета Среда Инструментов Прикладной Разработки (МСИПР)
+🟢 [🇺🇸] Meta Runtime Environment (MRE) / [🇷🇺] Мета Среда Выполнения (МСВ)
+<!--📟/-->⌨️ [🇺🇸] Command Line Interface (CLI) / [🇷🇺] Интерфейс командной строки (ИКС)
+<!--🖼️/🎨/-->🖱️ [🇺🇸] Graphical User Interface (GUI) / [🇷🇺] Графический интерфейс пользователя (ГИП)
 <!--
 meta-platform/
 ├── meta/
