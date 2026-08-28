@@ -10,6 +10,7 @@ meta-platform/
 │   │   │   ├── adte.exe ⌨️
 │   │   │   <s>└── adte-gui.exe 🖱️</s>
 │   │   ├── system/ 🔴
+│   │   │   ├── ui/
 │   │   │   ├── sdte.c 🔐
 │   │   │   ├── sdte.exe ⌨️
 │   │   │   <s>└── sdte-gui.exe 🖱️</s>
