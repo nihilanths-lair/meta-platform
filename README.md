@@ -10,8 +10,8 @@ meta-platform/
 │   │   │   │   │   ├── adte.c 🔐
 │   │   │   │   │   └── adte.exe ⌨️
 │   │   │   │   └── gui/
-│   │   │   │       ├── adte.c 🔐
-│   │   │   │       └── adte.exe 🖱️
+│   │   │   │       ├── <s>adte.c 🔐</s>
+│   │   │   │       └── <s>adte.exe 🖱️</s>
 │   │   │   ├── <s>adte-cli.c 🔐</s>
 │   │   │   ├── <s>adte-cli.exe ⌨️</s>
 │   │   │   ├── <s>adte-gui.c 🔐</s>
