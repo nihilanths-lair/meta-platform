@@ -14,6 +14,7 @@ meta-platform/
 │   │   │   <s>└── sdte-gui.exe 🖱️</s>
 │   │   ├── ui/
 │   │   │   ├── cli/
+│   │   │   │   └── dte.exe
 │   │   │   └── gui/
 │   │   ├── <s>dte-cli.c 🔐</s>
 │   │   ├── <s>dte-cli.exe ⌨️</s>        <-- Общий модуль управления компонентами M^DTE (^A/S)
