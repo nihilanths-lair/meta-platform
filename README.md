@@ -19,7 +19,11 @@ meta-platform/
 │   │   ├── sys/ 🔴
 │   │   │   ├── ui/
 │   │   │   │   ├── cli/
+│   │   │   │   │   ├── 
+│   │   │   │   │   └── 
 │   │   │   │   └── gui/
+│   │   │   │       ├── 
+│   │   │   │       └── 
 │   │   │   ├── <s>sdte-cli.c 🔐</s>
 │   │   │   ├── <s>sdte-cli.exe ⌨️</s>
 │   │   │   ├── <s>sdte-gui.c 🔐</s>
