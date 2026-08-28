@@ -53,6 +53,7 @@ meta-platform/ <-- Общий размер (в байтах): 0
 🔐: Закрытый исходный код
 <s>⚫: [🇺🇸] ─ / [🇷🇺] ─</s>
 🔴: [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
+🟣: [🇺🇸] ─ / [🇷🇺] ─</s>
 🟡: [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
 🟢: [🇺🇸] Meta Runtime Environment (MRE) / [🇷🇺] Мета Среда Выполнения (МСВ)
 <!--📟/-->⌨️: [🇺🇸] Command Line Interface (CLI) / [🇷🇺] Интерфейс командной строки (ИКС)
