@@ -24,8 +24,8 @@ meta-platform/
 │       <s>└── sdte-gui.exe 🖱️</s>
 ├── mde.c 🔐
 └── mde.exe ⌨️           <-- Оркестратор ─ сердце системы (Managed Development Environment)
-</pre>
 -->
+</pre>
 meta-platform/
 ├── meta/
 │   ├── re/ 🟢
