@@ -33,11 +33,11 @@ meta-platform/
 │   │   ├── adte/ 🟡
 │   │   │   ├── adte.c 🔐
 │   │   │   ├── adte.exe ⌨️  <-- [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
-│   │   │<s>└── adte-gui.exe 🖱️</s>
+│   │   │   <s>└── adte-gui.exe 🖱️</s>
 │   │   └── sdte/ 🔴
 │   │       ├── sdte.c 🔐
 │   │       ├── sdte.exe ⌨️  <-- [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
-│   │    <s>└── sdte-gui.exe 🖱️</s>
+│   │       <s>└── sdte-gui.exe 🖱️</s>
 │   └── re/ 🟢
 │       ├── re.c 🔐
 │       └── re.exe ⌨️    <-- [🇺🇸] Meta Runtime Environment / [🇷🇺] Мета Среда Выполнения
