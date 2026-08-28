@@ -4,12 +4,14 @@
 🔐 ─ Закрытый исходный код
 <s>⚫ ─ Чёрная зона, зона системной разработки микро-ПО (Meta Bare-Metal Environment)</s>
 🔴 ─ Красная зона, зона системной разработки ПО (System DT/SD Environment)
+ [🇺🇸] Meta System Development Tools Environment
+ [🇷🇺] Мета Среда Инструментов Системной Разработки
 🟡 ─ Жёлтая зона, зона прикладной разработки ПО (Application DT/SD Environment)
  [🇺🇸] Meta Application Development Tools Environment
  [🇷🇺] Мета Среда Инструментов Прикладной Разработки
 🟢 ─ Зелёная зона, зона конечного пользователя (User-end)
- [🇺🇸] Meta System Development Tools Environment
- [🇷🇺] Мета Среда Инструментов Системной Разработки
+ [🇺🇸] Meta Runtime Environment
+ [🇷🇺] Мета Среда Выполнения
 <!--📟/-->⌨️ ─ Command Line Interface (CLI) / Интерфейс командной строки (ИКС)
 <!--🖼️/🎨/-->🖱️ ─ Graphical User Interface (GUI) / Графический интерфейс пользователя (ГИП)
 <!--
@@ -47,7 +49,7 @@ meta-platform/
 │   │   └── dte.exe ⌨️           <-- Общий модуль управления компонентами M^DTE (^A/S)
 │   └── re/ 🟢
 │       ├── re.c 🔐
-│       └── re.exe ⌨️    <-- [🇺🇸] Meta Runtime Environment / [🇷🇺] Мета Среда Выполнения
+│       └── re.exe ⌨️
 ├── mde.c 🔐
 └── mde.exe ⌨️           <-- Оркестратор ─ диспетчер задач мета-платформы (Managed Development Environment)
 </pre>
