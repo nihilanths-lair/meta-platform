@@ -26,6 +26,7 @@ meta-platform/
 └── mde.exe ⌨️           <-- Оркестратор ─ сердце системы (Managed Development Environment)
 -->
 </pre>
+<pre>
 meta-platform/
 ├── meta/
 │   ├── re/ 🟢
