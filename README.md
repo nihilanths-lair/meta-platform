@@ -30,8 +30,8 @@ meta-platform/
 │   │   │   └── <s>sdte-gui.exe 🖱️</s>
 │   │   ├── ui/
 │   │   │   ├── cli/
-│   │   │   │   ├── <s>dte.c 🔐</s>
-│   │   │   │   └── <s>dte.exe ⌨️</s>
+│   │   │   │   ├── dte.c 🔐
+│   │   │   │   └── dte.exe ⌨️
 │   │   │   └── gui/
 │   │   │       ├── <s>dte.c 🔐</s>
 │   │   │       └── <s>dte.exe 🖱️</s>
