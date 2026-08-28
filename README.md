@@ -8,7 +8,24 @@
 🟢 ─ Зелёная зона, зона конечного пользователя (User-end)
 <!--📟/-->⌨️ ─ Command Line Interface (CLI) / Интерфейс командной строки (ИКС)
 <!--🖼️/🎨/-->🖱️ ─ Graphical User Interface (GUI) / Графический интерфейс пользователя (ГИП)
-
+<!--
+meta-platform/
+├── meta/
+│   ├── re/ 🟢
+│   │   ├── re.c 🔐
+│   │   └── re.exe ⌨️    <-- [🇺🇸] Meta Runtime Environment / [🇷🇺] Мета Среда Выполнения
+│   ├── adte/ 🟡
+│   │   ├── adte.c 🔐
+│   │   ├── adte.exe ⌨️  <-- [🇺🇸] Meta Application Development Tools Environment / [🇷🇺] Мета Среда Инструментов Прикладной Разработки
+│   │   <s>└── adte-gui.exe 🖱️</s>
+│   └── sdte/ 🔴
+│       ├── sdte.c 🔐
+│       ├── sdte.exe ⌨️  <-- [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
+│       <s>└── sdte-gui.exe 🖱️</s>
+├── mde.c 🔐
+└── mde.exe ⌨️           <-- Оркестратор ─ сердце системы (Managed Development Environment)
+</pre>
+-->
 meta-platform/
 ├── meta/
 │   ├── re/ 🟢
