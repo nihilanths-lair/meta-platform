@@ -6,6 +6,7 @@
 🔴 ─ Красная зона, зона системной разработки ПО (System DT/SD Environment)
 🟡 ─ Жёлтая зона, зона прикладной разработки ПО (Application DT/SD Environment)
 🟢 ─ Зелёная зона, зона конечного пользователя (User-end)
+[🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
 <!--📟/-->⌨️ ─ Command Line Interface (CLI) / Интерфейс командной строки (ИКС)
 <!--🖼️/🎨/-->🖱️ ─ Graphical User Interface (GUI) / Графический интерфейс пользователя (ГИП)
 <!--
@@ -36,7 +37,7 @@ meta-platform/
 │   │   │   <s>└── adte-gui.exe 🖱️</s>
 │   │   ├── sdte/ 🔴
 │   │   │   ├── sdte.c 🔐
-│   │   │   ├── sdte.exe ⌨️          <-- [🇺🇸] Meta System Development Tools Environment / [🇷🇺] Мета Среда Инструментов Системной Разработки
+│   │   │   ├── sdte.exe ⌨️
 │   │   │   <s>└── sdte-gui.exe 🖱️</s>
 │   │   ├── <s>dte-gui.exe 🖱️</s>        <-- Общий модуль управления компонентами M^DTE (^A/S)
 │   │   ├── dte.c 🔐
