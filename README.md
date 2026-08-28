@@ -40,7 +40,7 @@ meta-platform/
 │   │   │   <s>└── sdte-gui.exe 🖱️</s>
 │   │   ├── <s>dte-gui.exe 🖱️</s>
 │   │   ├── dte.c 🔐
-│   │   └── dte.exe ⌨️   <-- Общий модуль управления компонентами MDTE
+│   │   └── dte.exe ⌨️   <-- Общий модуль управления компонентами MDTE (A/S)
 │   └── re/ 🟢
 │       ├── re.c 🔐
 │       └── re.exe ⌨️    <-- [🇺🇸] Meta Runtime Environment / [🇷🇺] Мета Среда Выполнения
