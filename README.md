@@ -46,10 +46,10 @@ meta-platform/ <-- Общий размер (в байтах): 0
 ├── ui/
 │   ├── cli/
 │   │   ├── mde.c 🔐
-│   │   └── mde.exe
+│   │   └── mde.exe ⌨️
 │   └── gui/
 │       ├── mde.c 🔐
-│       └── mde.exe
+│       └── mde.exe 🖱️ <-- Будет выращен из CLI позже
 ├── mde.c 🔐
 └── mde.exe ⌨️ <-- Оркестратор (единый центр управления) ─ диспетчер задач мета-платформы (Managed Development Environment)
 </pre>
