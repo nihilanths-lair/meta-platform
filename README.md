@@ -58,7 +58,7 @@ meta-platform/ ☸️ <-- Общий размер ПРОЕКТА со сторо
 🟢 [🇺🇸] Meta Runtime Environment (MRE) / [🇷🇺] Мета Среда Выполнения (МСВ)
 
 <!--📟/-->⌨️ [🇺🇸] Command Line Interface (CLI) / [🇷🇺] Интерфейс командной строки (ИКС)
-<!--🖼️/🎨/-->🖱️ [🇺🇸] Graphical User Interface (GUI) / [🇷🇺] Графический интерфейс пользователя (ГИП)
+<!--🖼️/🎨/-->🖱️  [🇺🇸] Graphical User Interface (GUI) / [🇷🇺] Графический интерфейс пользователя (ГИП)
 <!--
 meta-platform/
 ├── meta/
