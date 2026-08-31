@@ -43,7 +43,7 @@ int main()
     // extented {
     case ':': printf("\n %02X = %c", ':', ':'); goto exec;
     case ';': printf("\n %02X = %c", ';', ';'); goto exec;
-    case '=': printf("\n %02X = %c", '=', '='); cache[vect]=cache[vect+1]; goto exec; // запись в текущую ячейку памяти (двухбайтовая операция)
+    case '=': printf("\n %02X = %c", '=', '='); cache[vect]=cache[vect+1]; goto exec; // записать в текущую ячейку памяти (двухбайтовая операция)
     case '*': printf("\n %02X = %c", '*', '*'); cache[vect]+=cache[vect+1]; goto exec; // добавить к текущей ячейки памяти (двухбайтовая операция)
     case '~': printf("\n %02X = %c", '~', '~'); cache[vect]-=cache[vect+1]; goto exec; // убавить из текущей ячейки памяти (двухбайтовая операция)
     // }
