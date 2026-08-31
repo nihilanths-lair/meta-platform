@@ -32,14 +32,18 @@ int main()
     // Программная эмуляция процессора
     char opcode[256] =
     {
-        [0] = '+',
-        [1 ... 255] = 0
+        [0] = ' ',
+        [1 ... 255] = ' '
     };
     unsigned char vect = 0;
     exec:
     switch (opcode[vect]){
-    case 0: printf("\n 0"); goto exec;
-    case '+': printf("\n %02X = %c", '+', '+'); goto exec;
+    case '+':
+    {
+        printf("\n %02X = %c", '+', '+');
+        goto exec;
+    }
+    case '-': printf("\n %02X = %c", '-', '-'); goto exec;
     case '<': printf("\n %02X = %c", '<', '<'); goto exec;
     case '>': printf("\n %02X = %c", '>', '>'); goto exec;
     default: printf("\n ?");
