@@ -6,6 +6,8 @@
 
 char ascii[256];
 
+char cache[256];
+
 int main()
 {
     setlocale(0, "");
@@ -30,12 +32,13 @@ int main()
     // Программная эмуляция процессора
     char opcode[256] =
     {
-        [0] = 0,
-        [1 ... 255] = 1
+        [0] = 1,
+        [1 ... 255] = 0
     };
     unsigned char vect = 0;
     switch (opcode[vect]){
     case 0: printf("\n 0"); break;
+    case 1: printf("\n 1"); break;
     default: printf("\n 1~255"); break;
     }
     putchar('\n');
