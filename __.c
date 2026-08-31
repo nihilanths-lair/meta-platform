@@ -6,7 +6,7 @@
 
 char ascii[256];
 
-char cache[256];
+char cache[0x100];
 
 int main()
 {
@@ -38,12 +38,14 @@ int main()
     unsigned char vect = 0;
     exec:
     switch (opcode[vect]){
-    case '+':
-    {
-        printf("\n %02X = %c", '+', '+');
-        goto exec;
-    }
+    case '+': printf("\n %02X = %c", '+', '+'); goto exec;
+    case ',': printf("\n %02X = %c", ',', ','); goto exec;
     case '-': printf("\n %02X = %c", '-', '-'); goto exec;
+    case '.': printf("\n %02X = %c", '.', '.'); goto exec;
+    // extented {
+    case ':': printf("\n %02X = %c", ':', ':'); goto exec;
+    case ';': printf("\n %02X = %c", ';', ';'); goto exec;
+    // }
     case '<': printf("\n %02X = %c", '<', '<'); goto exec;
     case '>': printf("\n %02X = %c", '>', '>'); goto exec;
     default: printf("\n ?");
