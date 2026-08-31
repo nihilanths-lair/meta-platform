@@ -43,6 +43,9 @@ int main()
     // extented {
     case ':': printf("\n %02X = %c", ':', ':'); goto exec;
     case ';': printf("\n %02X = %c", ';', ';'); goto exec;
+    case '=': printf("\n %02X = %c", '=', '='); cache[vect]=cache[vect+1]; goto exec;
+    case '*': printf("\n %02X = %c", '*', '*'); cache[vect]+=cache[vect+1]; goto exec;
+    case '~': printf("\n %02X = %c", '~', '~'); cache[vect]-=cache[vect+1]; goto exec;
     // }
     case '<': printf("\n %02X = %c", '<', '<'); vect--; goto exec;
     case '>': printf("\n %02X = %c", '>', '>'); vect++; goto exec;
