@@ -26,10 +26,7 @@ int main()
     for (int i = 161; i <= 167; i++) ascii[i] = ' '; // Глушим символы-призраки
     for (int i = 169; i <= 183; i++) ascii[i] = ' ';
     for (int i = 185; i <= 191; i++) ascii[i] = ' ';
-    loop_(256)
-    {
-        printf("\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
-    }
+    loop_(256) printf("\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
     putchar('\n');
     return 0;
 }
