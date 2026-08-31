@@ -39,6 +39,9 @@ int main()
     switch (opcode[vect]){
     case 0: printf("\n 0"); break;
     case 1: printf("\n 1"); break;
+    case 2: printf("\n 2"); break;
+    case 3: printf("\n 3"); break;
+    case 4: printf("\n 4"); break;
     default: printf("\n 1~255"); break;
     }
     putchar('\n');
