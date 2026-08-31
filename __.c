@@ -36,7 +36,19 @@ int main()
     unsigned char frame = 0;
     // Программная эмуляция абстрактного процессора
     printf("\n Эмуляция начата.");
-    exec: switch (opcode[frame]){
+    exec:
+    printf(" \n Отладчик памяти.\n");
+    printf("\n ·-----------------------------------------------------·\n |    ");
+    for (int i = 0; i < 16; i++) printf(" %02X", i);
+    printf(" |\n |                                                     |");
+    for (int i = 0; i < 16; i++)
+    {
+        printf("\n | %02X:", i*16);
+        for (int i = 0; i < 16; i++) printf(" %02X", cache[i]);
+        printf(" |");
+    }
+    printf("\n ·-----------------------------------------------------·\n");
+    switch (opcode[frame]){
     case ',': printf("\n %02X = %c", ',', ','); goto exec;
     case '.': printf("\n %02X = %c", '.', '.'); goto exec;
     // extented {
