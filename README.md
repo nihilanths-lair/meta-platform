@@ -42,6 +42,7 @@ meta-platform/ ⚫ <-- Эта папка целиком обязательна �
 │       └── mlg.exe
 │
 ├── database/ ⚫
+│   │
 │   └── service-information/ <-- Служебная информация (без шифрования)
 │
 ├── machine/
