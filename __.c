@@ -6,7 +6,12 @@
 
 char ascii[256];
 
-char cache[0x100];
+char cache[0x100] =
+{
+    [0] = '=',
+    [1] = 5,
+    [2] = ' '
+};
 
 int main()
 {
@@ -29,12 +34,6 @@ int main()
     for (int i = 169; i <= 183; i++) ascii[i] = ' ';
     for (int i = 185; i <= 191; i++) ascii[i] = ' ';
     loop_(256) printf("\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
-    char opcode[256] =
-    {
-        [0] = '=',
-        [1] = 5,
-        [2] = ' '
-    };
     unsigned char frame = 0;
     // Программная эмуляция абстрактного процессора
     printf("\n Эмуляция начата.");
@@ -46,11 +45,11 @@ int main()
     for (int i = 0; i < 16; i++)
     {
         printf("\n | %02X:", i*16);
-        for (int i = 0; i < 16; i++) printf(" %02X", cache[i]);
+        for (int j = 0; j < 16; j++) printf(" %02X", cache[i*16+j]);
         printf(" |");
     }
     printf("\n ·-----------------------------------------------------·\n");
-    switch (opcode[frame]){
+    switch (cache[frame]){
     case ',': printf("\n %02X = %c", ',', ','); goto exec;
     case '.': printf("\n %02X = %c", '.', '.'); goto exec;
     // extented {
