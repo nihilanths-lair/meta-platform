@@ -36,16 +36,16 @@ int main()
     unsigned char vect = 0;
     // Программная эмуляция абстрактного процессора
     exec: switch (opcode[vect]){
-    case '+': printf("\n %02X = %c", '+', '+'); goto exec;
+    case '+': printf("\n %02X = %c", '+', '+'); cache[vect]++; goto exec;
     case ',': printf("\n %02X = %c", ',', ','); goto exec;
-    case '-': printf("\n %02X = %c", '-', '-'); goto exec;
+    case '-': printf("\n %02X = %c", '-', '-'); cache[vect]--; goto exec;
     case '.': printf("\n %02X = %c", '.', '.'); goto exec;
     // extented {
     case ':': printf("\n %02X = %c", ':', ':'); goto exec;
     case ';': printf("\n %02X = %c", ';', ';'); goto exec;
     // }
-    case '<': printf("\n %02X = %c", '<', '<'); goto exec;
-    case '>': printf("\n %02X = %c", '>', '>'); goto exec;
+    case '<': printf("\n %02X = %c", '<', '<'); vect--; goto exec;
+    case '>': printf("\n %02X = %c", '>', '>'); vect++; goto exec;
 
     case '[': printf("\n %02X = %c", '[', '['); goto exec;
     case ']': printf("\n %02X = %c", ']', ']'); goto exec;
