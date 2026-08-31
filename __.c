@@ -47,8 +47,8 @@ int main()
     case '*': printf("\n %02X = %c", '*', '*'); cache[vect]+=cache[vect+1]; goto exec; // добавить к текущей ячейки памяти (двухбайтовая операция)
     case '~': printf("\n %02X = %c", '~', '~'); cache[vect]-=cache[vect+1]; goto exec; // убавить из текущей ячейки памяти (двухбайтовая операция)
     // }
-    case '<': printf("\n %02X = %c", '<', '<'); vect--; goto exec;
-    case '>': printf("\n %02X = %c", '>', '>'); vect++; goto exec;
+    case '<': printf("\n %02X = %c", '<', '<'); vect--; goto exec; // перейти к предыдущей ячейки памяти (однобайтовая операция)
+    case '>': printf("\n %02X = %c", '>', '>'); vect++; goto exec; // перейти к следующей ячейки памяти (однобайтовая операция)
 
     case '[': printf("\n %02X = %c", '[', '['); goto exec;
     case ']': printf("\n %02X = %c", ']', ']'); goto exec;
