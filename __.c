@@ -65,6 +65,6 @@ int main()
     // }
     default: printf("\n Неизвестный опкод.");
     }
-    printf("\n Эмуляция завершена.\n");
+    printf("\n Эмуляция окончена.\n");
     return 0;
 }
