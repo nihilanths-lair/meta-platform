@@ -27,6 +27,17 @@ int main()
     for (int i = 169; i <= 183; i++) ascii[i] = ' ';
     for (int i = 185; i <= 191; i++) ascii[i] = ' ';
     loop_(256) printf("\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
+    // Программная эмуляция процессора
+    char opcode[256] =
+    {
+        [0] = 0,
+        [1 ... 255] = 1
+    };
+    unsigned char vect = 0;
+    switch (opcode[vect]){
+    case 0: printf("\n 0"); break;
+    default: printf("\n 1~255"); break;
+    }
     putchar('\n');
     return 0;
 }
