@@ -34,7 +34,7 @@ int main()
         [0] = ' '
     };
     unsigned char vect = 0;
-    // Программная эмуляция процессора
+    // Программная эмуляция абстрактного процессора
     exec: switch (opcode[vect]){
     case '+': printf("\n %02X = %c", '+', '+'); goto exec;
     case ',': printf("\n %02X = %c", ',', ','); goto exec;
