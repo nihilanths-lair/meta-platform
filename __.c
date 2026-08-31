@@ -31,13 +31,15 @@ int main()
     loop_(256) printf("\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
     char opcode[256] =
     {
-        [0] = ' '
+        [0] = '=',
+        [1] = 5,
+        [2] = ' '
     };
     unsigned char frame = 0;
     // Программная эмуляция абстрактного процессора
     printf("\n Эмуляция начата.");
     exec:
-    printf(" \n Отладчик памяти.\n");
+    printf(" \n Отладчик памяти.");
     printf("\n ·-----------------------------------------------------·\n |    ");
     for (int i = 0; i < 16; i++) printf(" %02X", i);
     printf(" |\n |                                                     |");
@@ -57,14 +59,14 @@ int main()
     // }
 
     // Арифметико-логические операции (ALU)
-    case '-': printf("\n []--"); cache[frame]--; goto exec; // декремент текущей ячейки памяти (однобайтовая операция)
-    case '+': printf("\n []++"); cache[frame]++; goto exec; // инкремент текущей ячейки памяти (однобайтовая операция)
-    case '=': printf("\n [] = ?"); cache[frame]=cache[frame+1]; goto exec; // записать в текущую ячейку памяти (двухбайтовая операция)
-    case 0x04: printf("\n [] += ?"); cache[frame]+=cache[frame+1]; goto exec; // добавить к текущей ячейки памяти (двухбайтовая операция)
-    case 0x05: printf("\n [] -= ?"); cache[frame]-=cache[frame+1]; goto exec; // убавить из текущей ячейки памяти (двухбайтовая операция)
-    case 0x06: printf("\n [?] = ?"); cache[frame+1]=cache[frame+2]; goto exec; // записать в произвольную ячейку памяти (трёхбайтовая операция)
-    case 0x07: printf("\n [?] += ?"); cache[frame+1]+=cache[frame+2]; goto exec; // добавить к произвольной ячейки памяти (трёхбайтовая операция)
-    case 0x08: printf("\n [?] -= ?"); cache[frame+1]-=cache[frame+2]; goto exec; // убавить из произвольной ячейки памяти (трёхбайтовая операция)
+    case '-': printf("\n []--"); cache[frame]--; frame++; goto exec; // декремент текущей ячейки памяти (однобайтовая операция)
+    case '+': printf("\n []++"); cache[frame]++; frame++; goto exec; // инкремент текущей ячейки памяти (однобайтовая операция)
+    case '=': printf("\n [] = ?"); cache[frame]=cache[frame+1]; frame+=2; goto exec; // записать в текущую ячейку памяти (двухбайтовая операция)
+    case 0x04: printf("\n [] += ?"); cache[frame]+=cache[frame+1]; frame+=2; goto exec; // добавить к текущей ячейки памяти (двухбайтовая операция)
+    case 0x05: printf("\n [] -= ?"); cache[frame]-=cache[frame+1]; frame+=2; goto exec; // убавить из текущей ячейки памяти (двухбайтовая операция)
+    case 0x06: printf("\n [?] = ?"); cache[frame+1]=cache[frame+2]; frame+=3; goto exec; // записать в произвольную ячейку памяти (трёхбайтовая операция)
+    case 0x07: printf("\n [?] += ?"); cache[frame+1]+=cache[frame+2]; frame+=3; goto exec; // добавить к произвольной ячейки памяти (трёхбайтовая операция)
+    case 0x08: printf("\n [?] -= ?"); cache[frame+1]-=cache[frame+2]; frame+=3; goto exec; // убавить из произвольной ячейки памяти (трёхбайтовая операция)
     
     // Управление потоком (безусловные переходы)
     case '<': printf("\n %02X = %c", '<', '<'); frame--; goto exec; // перейти к предыдущей ячейки памяти (однобайтовая операция)
