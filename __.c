@@ -33,25 +33,27 @@ int main()
     {
         [0] = ' '
     };
-    unsigned char vect = 0;
+    unsigned char frame = 0;
     // Программная эмуляция абстрактного процессора
-    exec: switch (opcode[vect]){
-    case '+': printf("\n %02X = %c", '+', '+'); cache[vect]++; goto exec; // инкремент текущей ячейки памяти (однобайтовая операция)
-    case '-': printf("\n %02X = %c", '-', '-'); cache[vect]--; goto exec; // декремент текущей ячейки памяти (однобайтовая операция)
+    exec: switch (opcode[frame]){
     case ',': printf("\n %02X = %c", ',', ','); goto exec;
     case '.': printf("\n %02X = %c", '.', '.'); goto exec;
     // extented {
     case ':': printf("\n %02X = %c", ':', ':'); goto exec;
     case ';': printf("\n %02X = %c", ';', ';'); goto exec;
-    case '=': printf("\n %02X = %c", '=', '='); cache[vect]=cache[vect+1]; goto exec; // записать в текущую ячейку памяти (двухбайтовая операция)
-    case '*': printf("\n %02X = %c", '*', '*'); cache[vect]+=cache[vect+1]; goto exec; // добавить к текущей ячейки памяти (двухбайтовая операция)
-    case '~': printf("\n %02X = %c", '~', '~'); cache[vect]-=cache[vect+1]; goto exec; // убавить из текущей ячейки памяти (двухбайтовая операция)
     // }
-    case '<': printf("\n %02X = %c", '<', '<'); vect--; goto exec; // перейти к предыдущей ячейки памяти (однобайтовая операция)
-    case '>': printf("\n %02X = %c", '>', '>'); vect++; goto exec; // перейти к следующей ячейки памяти (однобайтовая операция)
-    case '\\': printf("\n %02X = %c", '\\', '\\'); vect-=cache[vect+1]; goto exec; // перейти к произвольной ячейки памяти с шагами назад (двухбайтовая операция)
-    case '/': printf("\n %02X = %c", '/', '/'); vect+=cache[vect+1]; goto exec; // перейти к произвольной ячейки памяти с шагами вперёд (двухбайтовая операция)
-    case '_': printf("\n %02X = %c", '_', '_'); vect=cache[vect+1]; goto exec; // перейти к произвольной ячейки памяти (двухбайтовая операция)
+    case '-': printf("\n %02X = %c", '-', '-'); cache[frame]--; goto exec; // декремент текущей ячейки памяти (однобайтовая операция)
+    case '+': printf("\n %02X = %c", '+', '+'); cache[frame]++; goto exec; // инкремент текущей ячейки памяти (однобайтовая операция)
+    case '=': printf("\n %02X = %c", '=', '='); cache[frame]=cache[frame+1]; goto exec; // записать в текущую ячейку памяти (двухбайтовая операция)
+    case '*': printf("\n %02X = %c", '*', '*'); cache[frame]+=cache[frame+1]; goto exec; // добавить к текущей ячейки памяти (двухбайтовая операция)
+    case '~': printf("\n %02X = %c", '~', '~'); cache[frame]-=cache[frame+1]; goto exec; // убавить из текущей ячейки памяти (двухбайтовая операция)
+    
+    // Безусловные переходы
+    case '<': printf("\n %02X = %c", '<', '<'); frame--; goto exec; // перейти к предыдущей ячейки памяти (однобайтовая операция)
+    case '>': printf("\n %02X = %c", '>', '>'); frame++; goto exec; // перейти к следующей ячейки памяти (однобайтовая операция)
+    case '_': printf("\n %02X = %c", '_', '_'); frame=cache[frame+1]; goto exec; // перейти к произвольной ячейки памяти (двухбайтовая операция)
+    case '\\': printf("\n %02X = %c", '\\', '\\'); frame-=cache[frame+1]; goto exec; // перейти к произвольной ячейки памяти с вектором направления назад (двухбайтовая операция)
+    case '/': printf("\n %02X = %c", '/', '/'); frame+=cache[frame+1]; goto exec; // перейти к произвольной ячейки памяти с вектором направления вперёд (двухбайтовая операция)
 
     case '[': printf("\n %02X = %c", '[', '['); goto exec;
     case ']': printf("\n %02X = %c", ']', ']'); goto exec;
