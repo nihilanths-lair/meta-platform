@@ -31,8 +31,7 @@ int main()
     loop_(256) printf("\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
     char opcode[256] =
     {
-        [0] = ' ',
-        [1 ... 255] = ' '
+        [0] = ' '
     };
     unsigned char vect = 0;
     // Программная эмуляция процессора
@@ -47,6 +46,11 @@ int main()
     // }
     case '<': printf("\n %02X = %c", '<', '<'); goto exec;
     case '>': printf("\n %02X = %c", '>', '>'); goto exec;
+
+    case '[': printf("\n %02X = %c", '[', '['); goto exec;
+    case ']': printf("\n %02X = %c", ']', ']'); goto exec;
+    // service {
+    // }
     default: printf("\n ?");
     }
     putchar('\n');
