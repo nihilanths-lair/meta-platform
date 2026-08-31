@@ -35,6 +35,7 @@ int main()
     };
     unsigned char frame = 0;
     // Программная эмуляция абстрактного процессора
+    printf("\n Эмуляция начата.");
     exec: switch (opcode[frame]){
     case ',': printf("\n %02X = %c", ',', ','); goto exec;
     case '.': printf("\n %02X = %c", '.', '.'); goto exec;
@@ -62,8 +63,8 @@ int main()
 
     // service {
     // }
-    default: printf("\n ?");
+    default: printf("\n Неизвестный опкод.");
     }
-    putchar('\n');
+    printf("\n Эмуляция завершена.\n");
     return 0;
 }
