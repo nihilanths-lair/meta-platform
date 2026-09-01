@@ -44,15 +44,22 @@ int main()
     printf("\n Итерация: %d.", itr);
     printf("\n Код операции: 0x%02X.", cache[ip]);
     int prev_ops = cache[ip];
-    printf("\n ·-----------------------------------------------------·");
+    printf("\n ·----------·------------------------------------------·");
+    printf("\n | Registry |                                          |");
+    printf("\n ·----------·                                          |");
+    printf("\n |                                                     |");
     printf("\n | IP (указатель команд): 0x%02X.                        |", ip);
-    printf("\n ·-----------------------------------------------------·\n |    ");
+    printf("\n ·-----------------------------------------------------·");
     int prev_ip = ip;
+    printf("\n ·-----------------------------------------------------·");
+    printf("\n | Memory |                                            |");
+    printf("\n ·--------·                                            |");
+    printf("\n |                                                     |");
+    printf("\n |    ");
     goto exec_2;
     exec:
     printf("\n Итерация: %d.", ++itr);
     printf("\n Код операции: 0x%02X -> 0x%02X.", prev_ops, cache[ip]);
-    //putchar('\n');
     prev_ops = cache[ip];
     printf("\n ·----------·------------------------------------------·");
     printf("\n | Registry |                                          |");
@@ -60,13 +67,12 @@ int main()
     printf("\n |                                                     |");
     printf("\n | IP (указатель команд): 0x%02X -> 0x%02X.                |", prev_ip, ip);
     printf("\n ·-----------------------------------------------------·");
-    //putchar('\n');
+    prev_ip = ip;
     printf("\n ·-----------------------------------------------------·");
     printf("\n | Memory |                                            |");
     printf("\n ·--------·                                            |");
     printf("\n |                                                     |");
     printf("\n |    ");
-    prev_ip = ip;
     exec_2:
     for (int i = 0; i < 16; i++) printf(" %02X", i);
     printf(" |\n |                                                     |");
