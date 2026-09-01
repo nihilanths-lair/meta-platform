@@ -68,16 +68,17 @@ int main()
     printf("\n | IP (указатель команд): 0x%02X -> 0x%02X.                |", prev_ip, ip);
     printf("\n ·-----------------------------------------------------·");
     prev_ip = ip;
-    printf("\n ·-----------------------------------------------------·");
-    printf("\n | Memory |                                            |");
-    printf("\n ·--------·                                            |");
-    printf("\n |                                                     |");
+    printf("\n ·--------·--------------------------------------------·------------------·");
+    printf("\n | Memory |                                            |                  |");
+    printf("\n ·--------·                                            |                  |");
+    printf("\n |                                                     |                  |");
     printf("\n |    ");
     exec_2:
     for (int i = 0; i < 16; i++) printf(" %02X", i);
     printf(" | ");
     for (int i = 0; i < 16; i++) printf("%01X", i);
-    printf(" |\n |                                                     |");
+    printf(" |");
+    printf("\n |                                                     |                  |");
     for (int i = 0; i < 16; i++)
     {
         printf("\n | %02X:", i*16);
@@ -86,7 +87,7 @@ int main()
         for (int j = 0; j < 16; j++) printf("%c", ascii[cache[i*16+j]]);
         printf(" |");
     }
-    printf("\n ·-----------------------------------------------------·\n");
+    printf("\n ·-----------------------------------------------------·------------------·\n");
     switch (cache[ip]){
     case ',': printf("\n %02X = %c", ',', ','); goto exec;
     case '.': printf("\n %02X = %c", '.', '.'); goto exec;
