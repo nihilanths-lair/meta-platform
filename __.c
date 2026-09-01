@@ -75,11 +75,15 @@ int main()
     printf("\n |    ");
     exec_2:
     for (int i = 0; i < 16; i++) printf(" %02X", i);
+    printf(" | ");
+    for (int i = 0; i < 16; i++) printf("%01X", i);
     printf(" |\n |                                                     |");
     for (int i = 0; i < 16; i++)
     {
         printf("\n | %02X:", i*16);
         for (int j = 0; j < 16; j++) printf(" %02X", cache[i*16+j]);
+        printf(" | ");
+        for (int j = 0; j < 16; j++) printf("%c", ascii[cache[i*16+j]]);
         printf(" |");
     }
     printf("\n ·-----------------------------------------------------·\n");
