@@ -43,19 +43,21 @@ int main()
     int itr = 0;
     printf("\n Итерация: %d.", itr);
     printf("\n Код операции: 0x%02X.", cache[frame]);
-    char prev_ops = cache[frame];
-    goto exec_2;
-    exec:
-    //static char checkpoint[256];
-    //checkpoint[5] = 3;
-    //Ыprintf("\n checkpoint[%d]: %d", 5, checkpoint[5]);
-    printf("\n Итерация: %d.", ++itr);
-    printf("\n Код операции: 0x%02X -> 0x%02X.", prev_ops, cache[frame]);
-    prev_ops = cache[frame];
-    exec_2:
+    int prev_ops = cache[frame];
     printf("\n ·-----------------------------------------------------·");
     printf("\n | frame: %02X                                           |", frame);
     printf("\n ·-----------------------------------------------------·\n |    ");
+    int prev_frame = frame;
+    goto exec_2;
+    exec:
+    printf("\n Итерация: %d.", ++itr);
+    printf("\n Код операции: 0x%02X -> 0x%02X.", prev_ops, cache[frame]);
+    prev_ops = cache[frame];
+    printf("\n ·-----------------------------------------------------·");
+    printf("\n | frame: %02X -> %02X                                     |", prev_frame, frame);
+    printf("\n ·-----------------------------------------------------·\n |    ");
+    prev_frame = frame;
+    exec_2:
     for (int i = 0; i < 16; i++) printf(" %02X", i);
     printf(" |\n |                                                     |");
     for (int i = 0; i < 16; i++)
