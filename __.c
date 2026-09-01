@@ -39,7 +39,7 @@ int main()
     // Программная эмуляция абстрактного процессора
     printf("\n Эмуляция начата.");
     printf("\n Отладчик памяти.\n");
-    static int itr = 0;
+    int itr = 0;
     printf("\n Итерация: %d.", itr);
     printf("\n Код операции: 0x%02X.", cache[frame]);
     char prev_ops = cache[frame];
