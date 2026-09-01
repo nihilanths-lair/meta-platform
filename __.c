@@ -36,27 +36,27 @@ int main()
         [3] = 0x02, // Код (операция)
         [4] = 0x40  // Код (адрес ячейки памяти)
     };
-    unsigned char frame = 0;
+    unsigned char ip = 0;
     // Программная эмуляция абстрактного процессора
     printf("\n Эмуляция начата.");
     printf("\n Отладчик памяти.\n");
     int itr = 0;
     printf("\n Итерация: %d.", itr);
-    printf("\n Код операции: 0x%02X.", cache[frame]);
-    int prev_ops = cache[frame];
+    printf("\n Код операции: 0x%02X.", cache[ip]);
+    int prev_ops = cache[ip];
     printf("\n ·-----------------------------------------------------·");
-    printf("\n | frame: %02X                                           |", frame);
+    printf("\n | IP (указатель команд): 0x%02X.                        |", ip);
     printf("\n ·-----------------------------------------------------·\n |    ");
-    int prev_frame = frame;
+    int prev_frame = ip;
     goto exec_2;
     exec:
     printf("\n Итерация: %d.", ++itr);
-    printf("\n Код операции: 0x%02X -> 0x%02X.", prev_ops, cache[frame]);
-    prev_ops = cache[frame];
+    printf("\n Код операции: 0x%02X -> 0x%02X.", prev_ops, cache[ip]);
+    prev_ops = cache[ip];
     printf("\n ·-----------------------------------------------------·");
-    printf("\n | frame: %02X -> %02X                                     |", prev_frame, frame);
+    printf("\n | IP (указатель команд): 0x%02X -> 0x%02X.                |", prev_frame, ip);
     printf("\n ·-----------------------------------------------------·\n |    ");
-    prev_frame = frame;
+    prev_frame = ip;
     exec_2:
     for (int i = 0; i < 16; i++) printf(" %02X", i);
     printf(" |\n |                                                     |");
@@ -67,7 +67,7 @@ int main()
         printf(" |");
     }
     printf("\n ·-----------------------------------------------------·\n");
-    switch (cache[frame]){
+    switch (cache[ip]){
     case ',': printf("\n %02X = %c", ',', ','); goto exec;
     case '.': printf("\n %02X = %c", '.', '.'); goto exec;
     // extented {
@@ -76,23 +76,23 @@ int main()
     // }
 
     // Арифметико-логические операции (ALU)
-    case '-': printf("\n []--"); cache[frame]--; frame++; goto exec; // декремент текущей ячейки памяти (однобайтовая операция)
-    case '+': printf("\n []++"); cache[frame]++; frame++; goto exec; // инкремент текущей ячейки памяти (однобайтовая операция)
-    case 0x01: cache[cache[frame+1]]--; frame+=2; goto exec; // декремент произвольной ячейки памяти (двухбайтовая операция)
-    case 0x02: cache[cache[frame+1]]++; frame+=2; goto exec; // инкремент произвольной ячейки памяти (двухбайтовая операция)
-    case '=': printf("\n [] = ?"); cache[frame]=cache[frame+1]; frame+=2; goto exec; // записать в текущую ячейку памяти (двухбайтовая операция)
-    case 0x04: printf("\n [] += ?"); cache[frame]+=cache[frame+1]; frame+=2; goto exec; // добавить к текущей ячейки памяти (двухбайтовая операция)
-    case 0x05: printf("\n [] -= ?"); cache[frame]-=cache[frame+1]; frame+=2; goto exec; // убавить из текущей ячейки памяти (двухбайтовая операция)
-    case 0x06: cache[cache[frame+1]]=cache[frame+2]; frame+=3; goto exec; // записать в произвольную ячейку памяти (трёхбайтовая операция)
-    case 0x07: cache[cache[frame+1]]+=cache[frame+2]; frame+=3; goto exec; // добавить к произвольной ячейки памяти (трёхбайтовая операция)
-    case 0x08: cache[cache[frame+1]]-=cache[frame+2]; frame+=3; goto exec; // убавить из произвольной ячейки памяти (трёхбайтовая операция)
+    case '-': printf("\n []--"); cache[ip]--; ip++; goto exec; // декремент текущей ячейки памяти (однобайтовая операция)
+    case '+': printf("\n []++"); cache[ip]++; ip++; goto exec; // инкремент текущей ячейки памяти (однобайтовая операция)
+    case 0x01: cache[cache[ip+1]]--; ip+=2; goto exec; // декремент произвольной ячейки памяти (двухбайтовая операция)
+    case 0x02: cache[cache[ip+1]]++; ip+=2; goto exec; // инкремент произвольной ячейки памяти (двухбайтовая операция)
+    case '=': printf("\n [] = ?"); cache[ip]=cache[ip+1]; ip+=2; goto exec; // записать в текущую ячейку памяти (двухбайтовая операция)
+    case 0x04: printf("\n [] += ?"); cache[ip]+=cache[ip+1]; ip+=2; goto exec; // добавить к текущей ячейки памяти (двухбайтовая операция)
+    case 0x05: printf("\n [] -= ?"); cache[ip]-=cache[ip+1]; ip+=2; goto exec; // убавить из текущей ячейки памяти (двухбайтовая операция)
+    case 0x06: cache[cache[ip+1]]=cache[ip+2]; ip+=3; goto exec; // записать в произвольную ячейку памяти (трёхбайтовая операция)
+    case 0x07: cache[cache[ip+1]]+=cache[ip+2]; ip+=3; goto exec; // добавить к произвольной ячейки памяти (трёхбайтовая операция)
+    case 0x08: cache[cache[ip+1]]-=cache[ip+2]; ip+=3; goto exec; // убавить из произвольной ячейки памяти (трёхбайтовая операция)
     
     // Управление потоком (безусловные переходы)
-    case '<': printf("\n %02X = %c", '<', '<'); frame--; goto exec; // перейти к предыдущей ячейки памяти (однобайтовая операция)
-    case '>': printf("\n %02X = %c", '>', '>'); frame++; goto exec; // перейти к следующей ячейки памяти (однобайтовая операция)
-    case '_': printf("\n %02X = %c", '_', '_'); frame=cache[frame+1]; goto exec; // перейти к произвольной ячейки памяти (двухбайтовая операция)
-    case '\\': printf("\n %02X = %c", '\\', '\\'); frame-=cache[frame+1]; goto exec; // перейти к произвольной ячейки памяти с вектором направления назад (двухбайтовая операция)
-    case '/': printf("\n %02X = %c", '/', '/'); frame+=cache[frame+1]; goto exec; // перейти к произвольной ячейки памяти с вектором направления вперёд (двухбайтовая операция)
+    case '<': printf("\n %02X = %c", '<', '<'); ip--; goto exec; // перейти к предыдущей ячейки памяти (однобайтовая операция)
+    case '>': printf("\n %02X = %c", '>', '>'); ip++; goto exec; // перейти к следующей ячейки памяти (однобайтовая операция)
+    case '_': printf("\n %02X = %c", '_', '_'); ip=cache[ip+1]; goto exec; // перейти к произвольной ячейки памяти (двухбайтовая операция)
+    case '\\': printf("\n %02X = %c", '\\', '\\'); ip-=cache[ip+1]; goto exec; // перейти к произвольной ячейки памяти с вектором направления назад (двухбайтовая операция)
+    case '/': printf("\n %02X = %c", '/', '/'); ip+=cache[ip+1]; goto exec; // перейти к произвольной ячейки памяти с вектором направления вперёд (двухбайтовая операция)
 
     // service {
     // }
