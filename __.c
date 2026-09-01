@@ -68,26 +68,29 @@ int main()
     printf("\n | IP (указатель команд): 0x%02X -> 0x%02X.                |", prev_ip, ip);
     printf("\n ·-----------------------------------------------------·");
     prev_ip = ip;
-    printf("\n ·--------·--------------------------------------------·------------------·");
-    printf("\n | Memory |                                            |                  |");
-    printf("\n ·--------·                                            |                  |");
-    printf("\n |                                                     |                  |");
-    printf("\n |    ");
+    printf("\n ·--------·------------------------------------------------·------------------·");
+    printf("\n | Memory |                                                |                  |");
+    printf("\n ·--------·                                                |                  |");
+    printf("\n |                                                         |                  |");
+    printf("\n |        ");
     exec_2:
+    // Шапка (заголовок)
     for (int i = 0; i < 16; i++) printf(" %02X", i);
     printf(" | ");
     for (int i = 0; i < 16; i++) printf("%01X", i);
     printf(" |");
-    printf("\n |                                                     |                  |");
-    for (int i = 0; i < 16; i++)
+    printf("\n |                                                         |                  |");
+    // Тело
+    for (int i = 0, l; i < 16; i++)
     {
-        printf("\n | %02X:", i*16);
-        for (int j = 0; j < 16; j++) printf(" %02X", cache[i*16+j]);
+        l = i*16;
+        printf("\n | %02X=%03d:", l, l); // Смещение
+        for (int j = 0; j < 16; j++) printf(" %02X", cache[l+j]);
         printf(" | ");
-        for (int j = 0; j < 16; j++) printf("%c", ascii[cache[i*16+j]]);
+        for (int j = 0; j < 16; j++) printf("%c", ascii[cache[l+j]]);
         printf(" |");
     }
-    printf("\n ·-----------------------------------------------------·------------------·\n");
+    printf("\n ·---------------------------------------------------------·------------------·\n");
     switch (cache[ip]){
     case ',': printf("\n %02X = %c", ',', ','); goto exec;
     case '.': printf("\n %02X = %c", '.', '.'); goto exec;
