@@ -141,6 +141,5 @@ int main()
     }
     proc_exit:
     printf("\n Эмуляция окончена.\n");
-    printf("\n %u", 0xFFFF);
     return 0;
 }
