@@ -97,6 +97,9 @@ int main()
     //case 0x80/*128*/: goto // Управление указателем команд: ручное / автоматическое (назад / вперёд) ?
     // Ручной конвеер
     conveyor_1: switch (cache[ip]){
+    
+    case 2:                                              goto conveyor_2;
+    case 3:                                              goto conveyor_3;
 
 /*1*/case '+': cache[ip]++;                              goto exec; // инкремент текущей ячейки памяти (однобайтовая операция)
 /*1*/case '-': cache[ip]--;                              goto exec; // декремент текущей ячейки памяти (однобайтовая операция)
@@ -121,6 +124,9 @@ int main()
     // Автоматический конвеер назад (снизу-вверх)
     conveyor_2: switch (cache[ip]){
 
+    case 1:                                              goto conveyor_1;
+    case 3:                                              goto conveyor_3;
+
 /*1*/case '+': cache[ip]++;                       ip--;  goto exec; // инкремент текущей ячейки памяти (однобайтовая операция)
 /*1*/case '-': cache[ip]--;                       ip--;  goto exec; // декремент текущей ячейки памяти (однобайтовая операция)
 
@@ -143,6 +149,9 @@ int main()
     }
     // Автоматический конвеер вперёд (сверху-вниз)
     conveyor_3: switch (cache[ip]){
+
+    case 1:                                              goto conveyor_1;
+    case 2:                                              goto conveyor_2;
 
 /*1*/case '+': cache[ip]++;                       ip++;  goto exec; // инкремент текущей ячейки памяти (однобайтовая операция)
 /*1*/case '-': cache[ip]--;                       ip++;  goto exec; // декремент текущей ячейки памяти (однобайтовая операция)
