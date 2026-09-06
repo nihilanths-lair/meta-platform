@@ -94,7 +94,7 @@ int main()
     }
     printf("\n ·---------------------------------------------------------·------------------·\n");
 
-    goto conveyor_1;
+    goto conveyor_forward;
     // Instruction Execution Flow Control (IEFC) / Управление Потоком Выполнения Инструкций (УПВИ)
     // Ручное (в этом режиме программист самостоятельно управляет потоком выполнения инструкций)
     // Автоматическое (в этом режиме процессор управляет потоком выполнения инструкций: сверху-вниз) - по умолчанию
@@ -102,9 +102,9 @@ int main()
     // Опкоды линии конвеера: 0x?? - отключить/остановить линию конвеера (ручное управление), 0x?? - включить/запустить линию конвеера (автоматическое управление)
     //case 0x80/*128*/: goto // Управление указателем команд: ручное / автоматическое (назад / вперёд) ?
     // Линия конвеера IP: автоматическое управление (движение вперёд)
-    conveyor_1: switch (cache[ip]){
+    conveyor_forward: switch (cache[ip]){ // движение конвейера вперед
     
-    case 2: goto conveyor_2;
+    case 2: goto conveyor_reverse; // движение конвейера назад (в обратном направлении)
     case 3: goto conveyor_3;
 
     // 1 | Смещение каретки данных (назад/вперёд)
@@ -147,9 +147,9 @@ int main()
     default: printf("\n Неизвестный опкод.");            goto proc_exit;
     }
     // Автоматический конвеер назад (снизу-вверх)
-    conveyor_2: switch (cache[ip]){
+    conveyor_reverse: switch (cache[ip]){
 
-    case 1:                                              goto conveyor_1;
+    case 1:                                              goto conveyor_forward;
     case 3:                                              goto conveyor_3;
 
 /*1*/case '+': cache[ip]++;                       ip--;  goto exec; // инкремент текущей ячейки памяти (однобайтовая операция)
@@ -175,8 +175,8 @@ int main()
     // Автоматический конвеер вперёд (сверху-вниз)
     conveyor_3: switch (cache[ip]){
 
-    case 1:                                              goto conveyor_1;
-    case 2:                                              goto conveyor_2;
+    case 1:                                              goto conveyor_forward;
+    case 2:                                              goto conveyor_reverse;
 
 /*1*/case '+': cache[ip]++;                       ip++;  goto exec; // инкремент текущей ячейки памяти (однобайтовая операция)
 /*1*/case '-': cache[ip]--;                       ip++;  goto exec; // декремент текущей ячейки памяти (однобайтовая операция)
