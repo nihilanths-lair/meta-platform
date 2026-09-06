@@ -29,10 +29,10 @@ int main()
     loop_(256) printf("\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
     unsigned char cache[0x100] =
     {
-        '>', '+'
+        [16] = '+'
     };
-    register unsigned char ip = 0;
-    register unsigned char dp = 0;
+    register unsigned char ip = 16; // зона (секция) кода
+    register unsigned char dp = 0; // зона (секция) данных
     // Программная эмуляция абстрактного процессора
     printf("\n Эмуляция начата.");
     printf("\n Отладчик памяти.\n");
@@ -105,14 +105,14 @@ int main()
     
     case 2:                                              goto conveyor_2;
     case 3:                                              goto conveyor_3;
-    // #1 - JMP-- / JMP++ / JMP #
-    case '<': ip--;                                     goto exec; // 1 | перейти к предыдущей ячейки памяти
-    case '>': ip++;                                     goto exec; // 1 | перейти к следующей ячейки памяти
-    // extented (плавающий указатель команд)
-    case '~': ip = cache[ip];                           goto exec; // 2 | перейти к произвольной (абсолютной) ячейки памяти
+    // #1: JMP-- / JMP++ / JMP #
+    case '<': dp--;                                     goto exec; // 1 | перейти к предыдущей ЯП данных
+    case '>': dp++;                                     goto exec; // 1 | перейти к следующей ЯП данных
+    // extented (плавающий указатель данных)
+    case '~': dp = cache[ip+1];                         goto exec; // 2 | перейти к произвольной (абсолютной) ЯП данных
     // #2
-    case '+': cache[ip]++;                              goto exec; // инкремент текущей ячейки памяти (однобайтовая операция)
-    case '-': cache[ip]--;                              goto exec; // декремент текущей ячейки памяти (однобайтовая операция)
+    case '+': cache[dp]++; ip++;                        goto exec; // 1 | инкремент текущей ЯП данных
+    case '-': cache[dp]--; ip++;                        goto exec; // 1 | декремент текущей ЯП данных
     /*// #3
     case '=': cache[ip] = cache[ip+1];                  goto exec; // записать в текущую ячейку памяти (двухбайтовая операция)
     case 128: cache[ip] += cache[ip+1];                 goto exec; // добавить к текущей ячейки памяти (двухбайтовая операция)
