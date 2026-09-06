@@ -113,6 +113,7 @@ int main()
     case '(': ip++; goto conveyor_forward;
     case ')': ip++; goto conveyor_reverse;
     case '!': ip++; goto stop_conveyor;
+    case '@': ip++; // goto start_conveyor;
     // :Extented]
 
     // 1 | Смещение каретки данных (назад/вперёд)
@@ -159,6 +160,7 @@ int main()
     case '(': ip--; goto conveyor_forward;
     case ')': ip--; goto conveyor_reverse;
     case '!': ip--; goto stop_conveyor;
+    case '@': ip--; // goto start_conveyor;
     // :Extented]
 
     // 1 | Смещение каретки данных (назад/вперёд)
@@ -205,6 +207,7 @@ int main()
     case '(': ip--; goto conveyor_forward;
     case ')': ip--; goto conveyor_reverse;
     case '!':       goto stop_conveyor; // то самое буксование на месте! :)
+    case '@': {} // goto start_conveyor;
     // :Extented]
 
     // 1 | Смещение каретки данных (назад/вперёд)
