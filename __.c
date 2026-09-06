@@ -104,15 +104,15 @@ int main()
     // Опкоды линии конвеера: 0x?? - отключить/остановить линию конвеера (ручное управление), 0x?? - включить/запустить линию конвеера (автоматическое управление)
     //case 0x80/*128*/: goto // Управление указателем команд: ручное / автоматическое (назад / вперёд) ?
 
-    auto_vector_direction_ip__forward: switch (cache[ip]){ // auto ip: right
+    auto_vector_direction_ip__forward: switch (cache[ip]){ // auto-ip: right
     
-//Ex={ 1 | Переключение (смена контекста) вектора направления потока выполнения кода
-    case '(': ip++; goto auto_vector_direction_ip__forward; // авто-вектор направления IP: вперед
-    case ')':       goto auto_vector_direction_ip__back;    // авто-вектор направления IP: назад
+//Ex={ 1 | Перенаправление потока выполнения кода в другую сторону
+    case 'x': goto auto_vector_direction_ip__back; // авто-вектор направления IP: назад
+    //case '(': ip++; goto auto_vector_direction_ip__forward; // авто-вектор направления IP: вперед
+    //case ')':       goto auto_vector_direction_ip__back;    // авто-вектор направления IP: назад
+
     // 1 | Вектор направления над потоком выполнения кода (перешагиваем сам опкод, перед остановкой линии движения конвейера)
-    //case '!': ip++; goto stop_conveyor;
-    //case '@': ip++; goto start_conveyor; // $^вторым аргументом можно указать вектор направления^$
-//};
+    //case '!': ip++; goto stop_conveyor; case '@': ip++; goto start_conveyor; // $^вторым аргументом можно указать вектор направления^$
 
     // 1 | Смещение каретки данных (назад/вперёд)
     case '<': dp--; ip++;                       goto exec; // Сдвинуть указатель-данных на предыдущую ячейку памяти
@@ -151,14 +151,15 @@ int main()
     default: printf("\n Неизвестный опкод.");   goto proc_exit;
     }
 
-    auto_vector_direction_ip__back: switch (cache[ip]){ // auto ip: left
+    auto_vector_direction_ip__back: switch (cache[ip]){ // auto-ip: left
 
-//Ex={ 1 | Переключение (смена контекста) вектора направления потока выполнения кода
-    case '(':       goto auto_vector_direction_ip__forward; // авто-вектор направления IP: вперед
-    case ')': ip--; goto auto_vector_direction_ip__back;    // авто-вектор направления IP: назад
+//Ex={ 1 | Перенаправление потока выполнения кода в другую сторону
+    case 'x': goto auto_vector_direction_ip__forward; // авто-вектор направления IP: вперёд
+    //case '(':       goto auto_vector_direction_ip__forward; // авто-вектор направления IP: вперед
+    //case ')': ip--; goto auto_vector_direction_ip__back;    // авто-вектор направления IP: назад
+
     // 1 | Вектор направления над потоком выполнения кода (перешагиваем сам опкод, перед остановкой линии движения конвейера)
-    //case '!': ip--; goto stop_conveyor;
-    //case '@': ip--; goto start_conveyor; // $^вторым аргументом можно указать вектор направления^$
+    //case '!': ip--; goto stop_conveyor; //case '@': ip--; goto start_conveyor; // $^вторым аргументом можно указать вектор направления^$
 //};
 
     // 1 | Смещение каретки данных (назад/вперёд)
