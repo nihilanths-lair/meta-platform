@@ -113,7 +113,7 @@ int main()
     case '(': ip++; goto conveyor_forward;
     case ')': ip++; goto conveyor_reverse;
     case '!': ip++; goto stop_conveyor;
-    case '@': ip++; // goto start_conveyor;
+    case '@': ip++; // goto start_conveyor; / $^вторым аргументом можно указать вектор направления^$
     // :Extented]
 
     // 1 | Смещение каретки данных (назад/вперёд)
@@ -207,6 +207,9 @@ int main()
     case '(': ip--; goto conveyor_forward;
     case ')': ip--; goto conveyor_reverse;
     case '!':       goto stop_conveyor; // то самое буксование на месте! :)
+    // вектор направления в ручном режиме
+    case 'b': ip++; goto forward_direction_vector_in_manual_mode;
+    case 'd': ip--; goto backward_direction_vector_in_manual_mode;
     case '@': {} // goto start_conveyor;
     // :Extented]
 
@@ -244,8 +247,11 @@ int main()
     case '=': cache[dp]  = cache[ip+1]; ip+=2;  goto exec;
     // :Extented]
 
-    default: printf("\n Неизвестный опкод.");
+    default: printf("\n Неизвестный опкод.");   goto proc_exit;
     }
+    // Заглушки
+    forward_direction_vector_in_manual_mode: printf("\n Заглушка №1."); goto proc_exit;
+    backward_direction_vector_in_manual_mode: printf("\n Заглушка №2.");
     proc_exit:
     printf("\n Эмуляция окончена.\n");
     return 0;
