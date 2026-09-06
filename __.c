@@ -122,10 +122,13 @@ int main()
 
     // 2 | Смещение каретки данных (абсолютное) и изменение потока выполнения кода (абсолютное)
     case '~': dp = cache[ip+1]; ip+=2;          goto exec;
-    case 'j': ip = cache[ip+1];                 goto exec;
+    case '}': dp += cache[ip+1]; ip+=2;         goto exec;
+    case '{': dp -= cache[ip+1]; ip+=2;         goto exec;
     // 2 | Изменение потока выполнения кода (относительное)
     case '/':  ip += cache[ip+1];               goto exec; // В сторону конца
     case '\\': ip -= cache[ip+1];               goto exec; // В сторону начала
+    // 2 | Изменение потока выполнения кода (абсолютное)
+    case 'j':  ip  = cache[ip+1];               goto exec; // В любую сторону
     // :Extented]
 
     // 1 | Арифметика над данными (инкремент/декремент)
