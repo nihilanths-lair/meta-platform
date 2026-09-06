@@ -109,10 +109,10 @@ int main()
     conveyor_forward: switch (cache[ip]){ // движение конвейера вперед (авто-вперёд)
     
     // [Extented:
-    // 1 | Вектор направления над потоком выполнения кода
+    // 1 | Вектор направления над потоком выполнения кода (перешагиваем сам опкод, перед остановкой линии движения конвейера)
     case '(': ip++; goto conveyor_forward;
     case ')': ip++; goto conveyor_reverse;
-    case 1: ip++; goto stop_conveyor; // перешагиваем сам опкод, перед остановкой линии движения конвейера
+    case '!': ip++; goto stop_conveyor;
     // :Extented]
 
     // 1 | Смещение каретки данных (назад/вперёд)
@@ -155,10 +155,10 @@ int main()
     conveyor_reverse: switch (cache[ip]){ // движение конвейера назад (авто-назад), обратное направление
 
     // [Extented:
-    // 1 | Вектор направления над потоком выполнения кода
+    // 1 | Вектор направления над потоком выполнения кода (перешагиваем сам опкод, перед остановкой линии движения конвейера)
     case '(': ip--; goto conveyor_forward;
     case ')': ip--; goto conveyor_reverse;
-    case 1: ip++; goto stop_conveyor; // перешагиваем сам опкод, перед остановкой линии движения конвейера
+    case '!': ip--; goto stop_conveyor;
     // :Extented]
 
     // 1 | Смещение каретки данных (назад/вперёд)
@@ -200,13 +200,11 @@ int main()
     // Ручной конвейер (конвейером в этом режиме управляет user-end)
     stop_conveyor: switch (cache[ip]){
 
-    case 1: goto conveyor_forward;
-    case 2: goto conveyor_reverse;
-
     // [Extented:
-    // 1 | Вектор направления над потоком выполнения кода (вперёд/назад)
-    case '(': {} // goto forward_direction_vector; /*ip++;*/
-    case ')': {} // goto backward_direction_vector; /*ip--;*/
+    // 1 | Вектор направления над потоком выполнения кода (перешагиваем сам опкод, перед остановкой линии движения конвейера)
+    case '(': ip--; goto conveyor_forward;
+    case ')': ip--; goto conveyor_reverse;
+    case '!':       goto stop_conveyor; // то самое буксование на месте! :)
     // :Extented]
 
     // 1 | Смещение каретки данных (назад/вперёд)
