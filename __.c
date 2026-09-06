@@ -106,10 +106,10 @@ int main()
     // Опкоды линии конвеера: 0x?? - отключить/остановить линию конвеера (ручное управление), 0x?? - включить/запустить линию конвеера (автоматическое управление)
     //case 0x80/*128*/: goto // Управление указателем команд: ручное / автоматическое (назад / вперёд) ?
     // Линия конвеера IP: автоматическое управление (движение вперёд)
-    conveyor_forward: switch (cache[ip]){ // движение конвейера вперед
+    conveyor_forward: switch (cache[ip]){ // движение конвейера вперед (авто-вперёд)
     
     case 2: goto conveyor_reverse; // движение конвейера назад (в обратном направлении)
-    case 3: goto conveyor_3;
+    case 3: goto stop_conveyor;
 
     // 1 | Смещение каретки данных (назад/вперёд)
     case '<': dp--; ip++;                       goto exec; // Сдвинуть указатель-данных на предыдущую ячейку памяти
@@ -148,10 +148,10 @@ int main()
     default: printf("\n Неизвестный опкод.");   goto proc_exit;
     }
     // Автоматическая линия конвейера (снизу-вверх)
-    conveyor_reverse: switch (cache[ip]){ // движение конвейера назад (обратное направление)
+    conveyor_reverse: switch (cache[ip]){ // движение конвейера назад (авто-назад), обратное направление
 
     case 1: goto conveyor_forward;
-    case 3: goto conveyor_3;
+    case 3: goto stop_conveyor;
 
     // 1 | Смещение каретки данных (назад/вперёд)
     case '<': dp--; ip--;                       goto exec; // Сдвинуть указатель-данных на предыдущую ячейку памяти
@@ -189,8 +189,8 @@ int main()
 
     default: printf("\n Неизвестный опкод.");   goto proc_exit;
     }
-    // Ручной конвейер
-    conveyor_3: switch (cache[ip]){
+    // Ручной конвейер (конвейером в этом режиме управляет user-end)
+    stop_conveyor: switch (cache[ip]){
 
     case 1: goto conveyor_forward;
     case 2: goto conveyor_reverse;
