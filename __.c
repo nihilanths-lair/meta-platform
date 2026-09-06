@@ -129,6 +129,8 @@ int main()
     // 2 | Арифметика над данными
     case 'a': cache[dp] += cache[ip+1]; ip+=2;  goto exec;
     case 's': cache[dp] -= cache[ip+1]; ip+=2;  goto exec;
+    // 2 | Пересылка данных
+    case '=': cache[dp]  = cache[ip+1]; ip+=2;  goto exec;
     // :Extented]
 
     /*// #3
