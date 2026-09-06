@@ -97,24 +97,22 @@ int main()
         printf(" |");
     }
     printf("\n ·---------------------------------------------------------·------------------·\n");
-
-    goto conveyor_forward;
     // Instruction Execution Flow Control (IEFC) / Управление Потоком Выполнения Инструкций (УПВИ)
     // Ручное (в этом режиме программист самостоятельно управляет потоком выполнения инструкций)
     // Автоматическое (в этом режиме процессор управляет потоком выполнения инструкций: сверху-вниз) - по умолчанию
     // Автоматическое (в этом режиме процессор управляет потоком выполнения инструкций: снизу-вверх)
     // Опкоды линии конвеера: 0x?? - отключить/остановить линию конвеера (ручное управление), 0x?? - включить/запустить линию конвеера (автоматическое управление)
     //case 0x80/*128*/: goto // Управление указателем команд: ручное / автоматическое (назад / вперёд) ?
-    // Линия конвеера IP: автоматическое управление (движение вперёд)
-    conveyor_forward: switch (cache[ip]){ // движение конвейера вперед (авто-вперёд)
+
+    auto_vector_direction_ip__forward: switch (cache[ip]){ // auto ip: right
     
-    // [Extented:
+//Ex={ 1 | Переключение (смена контекста) вектора направления потока выполнения кода
+    case '(': ip++; goto auto_vector_direction_ip__forward; // авто-вектор направления IP: вперед
+    case ')':       goto auto_vector_direction_ip__back;    // авто-вектор направления IP: назад
     // 1 | Вектор направления над потоком выполнения кода (перешагиваем сам опкод, перед остановкой линии движения конвейера)
-    case '(': ip++; goto conveyor_forward;
-    case ')': ip++; goto conveyor_reverse;
-    case '!': ip++; goto stop_conveyor;
-    case '@': ip++; // goto start_conveyor; / $^вторым аргументом можно указать вектор направления^$
-    // :Extented]
+    //case '!': ip++; goto stop_conveyor;
+    //case '@': ip++; goto start_conveyor; // $^вторым аргументом можно указать вектор направления^$
+//};
 
     // 1 | Смещение каретки данных (назад/вперёд)
     case '<': dp--; ip++;                       goto exec; // Сдвинуть указатель-данных на предыдущую ячейку памяти
@@ -152,16 +150,16 @@ int main()
 
     default: printf("\n Неизвестный опкод.");   goto proc_exit;
     }
-    // Автоматическая линия конвейера (снизу-вверх)
-    conveyor_reverse: switch (cache[ip]){ // движение конвейера назад (авто-назад), обратное направление
 
-    // [Extented:
+    auto_vector_direction_ip__back: switch (cache[ip]){ // auto ip: left
+
+//Ex={ 1 | Переключение (смена контекста) вектора направления потока выполнения кода
+    case '(':       goto auto_vector_direction_ip__forward; // авто-вектор направления IP: вперед
+    case ')': ip--; goto auto_vector_direction_ip__back;    // авто-вектор направления IP: назад
     // 1 | Вектор направления над потоком выполнения кода (перешагиваем сам опкод, перед остановкой линии движения конвейера)
-    case '(': ip--; goto conveyor_forward;
-    case ')': ip--; goto conveyor_reverse;
-    case '!': ip--; goto stop_conveyor;
-    case '@': ip--; // goto start_conveyor;
-    // :Extented]
+    //case '!': ip--; goto stop_conveyor;
+    //case '@': ip--; goto start_conveyor; // $^вторым аргументом можно указать вектор направления^$
+//};
 
     // 1 | Смещение каретки данных (назад/вперёд)
     case '<': dp--; ip--;                       goto exec; // Сдвинуть указатель-данных на предыдущую ячейку памяти
@@ -199,59 +197,14 @@ int main()
 
     default: printf("\n Неизвестный опкод.");   goto proc_exit;
     }
-    // Ручной конвейер (конвейером в этом режиме управляет user-end)
-    stop_conveyor: switch (cache[ip]){
 
-    // [Extented:
-    // 1 | Вектор направления над потоком выполнения кода (перешагиваем сам опкод, перед остановкой линии движения конвейера)
-    case '(': ip--; goto conveyor_forward;
-    case ')': ip--; goto conveyor_reverse;
-    case '!':       goto stop_conveyor; // то самое буксование на месте! :)
-    // вектор направления в ручном режиме
-    case 'b': ip++; goto forward_direction_vector_in_manual_mode;
-    case 'd': ip--; goto backward_direction_vector_in_manual_mode;
-    case '@': {} // goto start_conveyor;
-    // :Extented]
-
-    // 1 | Смещение каретки данных (назад/вперёд)
-    case '<': dp--; ip++;                       goto exec; // Сдвинуть указатель-данных на предыдущую ячейку памяти
-    case '>': dp++; ip++;                       goto exec; // Сдвинуть указатель-данных на следующую ячейку памяти
-
-    // [Extented:
-    // 1 | Вектор направления над потоком выполнения кода (реализация временно заморожена)
-    case 4: /*ip--;*/                           goto exec; // Перенаправить поток кода на шаг назад (использовать в режиме ручного управления, в целях избежания багов)
-    case 5: /*ip++;*/                           goto exec; // Перенаправить поток кода на шаг вперёд (использовать в режиме ручного управления, в целях избежания багов)
-
-    // 2 | Смещение каретки данных (относительное)
-    case '}': dp += cache[ip+1]; ip+=2;         goto exec; // В сторону конца
-    case '{': dp -= cache[ip+1]; ip+=2;         goto exec; // В сторону начала
-    // 2 | Смещение каретки данных (абсолютное)
-    case '~': dp  = cache[ip+1]; ip+=2;         goto exec; // В любую сторону
-
-    // 2 | Изменение потока выполнения кода (относительное)
-    case '/':  ip += cache[ip+1];               goto exec; // В сторону конца
-    case '\\': ip -= cache[ip+1];               goto exec; // В сторону начала
-    // 2 | Изменение потока выполнения кода (абсолютное)
-    case 'j':  ip  = cache[ip+1];               goto exec; // В любую сторону
-    // :Extented]
-
-    // 1 | Арифметика над данными (инкремент/декремент)
-    case '+': cache[dp]++; ip++;                goto exec;
-    case '-': cache[dp]--; ip++;                goto exec;
-    
-    // [Extented:
-    // 2 | Арифметика над данными (сложение/вычитание)
-    case 'a': cache[dp] += cache[ip+1]; ip+=2;  goto exec;
-    case 's': cache[dp] -= cache[ip+1]; ip+=2;  goto exec;
-    // 2 | Пересылка данных
-    case '=': cache[dp]  = cache[ip+1]; ip+=2;  goto exec;
-    // :Extented]
-
-    default: printf("\n Неизвестный опкод.");   goto proc_exit;
-    }
     // Заглушки
-    forward_direction_vector_in_manual_mode: printf("\n Заглушка №1."); goto proc_exit;
-    backward_direction_vector_in_manual_mode: printf("\n Заглушка №2.");
+    stop_conveyor: printf("\n Заглушка №1."); goto proc_exit;
+    start_conveyor: printf("\n Заглушка №2."); goto proc_exit;
+
+    forward_direction_vector_in_manual_mode: printf("\n Заглушка №3."); goto proc_exit;
+    backward_direction_vector_in_manual_mode: printf("\n Заглушка №4.");
+
     proc_exit:
     printf("\n Эмуляция окончена.\n");
     return 0;
