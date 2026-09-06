@@ -188,6 +188,16 @@ int main()
     case 1: goto conveyor_forward;
     case 2: goto conveyor_reverse;
 
+    // ... //
+
+    default: printf("\n Неизвестный опкод.");
+    }
+    proc_exit:
+    printf("\n Эмуляция окончена.\n");
+    return 0;
+}
+
+/*
     case '+': cache[ip]++;                       ip++;  goto exec; // инкремент текущей ячейки памяти
     case '-': cache[ip]--;                       ip++;  goto exec; // декремент текущей ячейки памяти
 
@@ -205,10 +215,4 @@ int main()
     case 133: ip += cache[ip+1];                        goto exec; // перейти к произвольной ячейки памяти с вектором направления вперёд
     case 134: ip -= cache[ip+1];                        goto exec; // перейти к произвольной ячейки памяти с вектором направления назад
     case 135: ip = cache[ip+1];                         goto exec; // перейти к произвольной ячейки памяти
-
-    default: printf("\n Неизвестный опкод.");
-    }
-    proc_exit:
-    printf("\n Эмуляция окончена.\n");
-    return 0;
-}
+*/
