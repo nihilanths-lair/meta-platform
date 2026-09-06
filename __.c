@@ -188,23 +188,23 @@ int main()
     case 1: goto conveyor_forward;
     case 2: goto conveyor_reverse;
 
-/*1*/case '+': cache[ip]++;                       ip++;  goto exec; // инкремент текущей ячейки памяти
-/*1*/case '-': cache[ip]--;                       ip++;  goto exec; // декремент текущей ячейки памяти
+    case '+': cache[ip]++;                       ip++;  goto exec; // инкремент текущей ячейки памяти
+    case '-': cache[ip]--;                       ip++;  goto exec; // декремент текущей ячейки памяти
 
-/*2*/case '=': cache[ip] = cache[ip+1];           ip+=2; goto exec; // записать в текущую ячейку памяти
-/*2*/case 128: cache[ip] += cache[ip+1];          ip+=2; goto exec; // добавить к текущей ячейки памяти
-/*2*/case 129: cache[ip] -= cache[ip+1];          ip+=2; goto exec; // убавить из текущей ячейки памяти
+    case '=': cache[ip] = cache[ip+1];           ip+=2; goto exec; // записать в текущую ячейку памяти
+    case 128: cache[ip] += cache[ip+1];          ip+=2; goto exec; // добавить к текущей ячейки памяти
+    case 129: cache[ip] -= cache[ip+1];          ip+=2; goto exec; // убавить из текущей ячейки памяти
 
-/*3*/case 130: cache[cache[ip+1]]  = cache[ip+2]; ip+=3; goto exec; // записать в произвольную ячейку памяти
-/*3*/case 131: cache[cache[ip+1]] += cache[ip+2]; ip+=3; goto exec; // добавить к произвольной ячейки памяти
-/*3*/case 132: cache[cache[ip+1]] -= cache[ip+2]; ip+=3; goto exec; // убавить из произвольной ячейки памяти
+    case 130: cache[cache[ip+1]]  = cache[ip+2]; ip+=3; goto exec; // записать в произвольную ячейку памяти
+    case 131: cache[cache[ip+1]] += cache[ip+2]; ip+=3; goto exec; // добавить к произвольной ячейки памяти
+    case 132: cache[cache[ip+1]] -= cache[ip+2]; ip+=3; goto exec; // убавить из произвольной ячейки памяти
 
-/*4*/case '>': ip++;                                     goto exec; // перейти к следующей ячейки памяти
-/*4*/case '<': ip--;                                     goto exec; // перейти к предыдущей ячейки памяти
+    case '<': dp--;                                      goto exec; // перейти к предыдущей ячейки памяти
+    case '>': dp++;                                      goto exec; // перейти к следующей ячейки памяти
 
-/*5*/case 133: ip += cache[ip+1];                        goto exec; // перейти к произвольной ячейки памяти с вектором направления вперёд
-/*5*/case 134: ip -= cache[ip+1];                        goto exec; // перейти к произвольной ячейки памяти с вектором направления назад
-/*5*/case 135: ip = cache[ip+1];                         goto exec; // перейти к произвольной ячейки памяти
+    case 133: ip += cache[ip+1];                        goto exec; // перейти к произвольной ячейки памяти с вектором направления вперёд
+    case 134: ip -= cache[ip+1];                        goto exec; // перейти к произвольной ячейки памяти с вектором направления назад
+    case 135: ip = cache[ip+1];                         goto exec; // перейти к произвольной ячейки памяти
 
     default: printf("\n Неизвестный опкод.");
     }
