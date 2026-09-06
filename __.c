@@ -115,40 +115,34 @@ int main()
     //case '!': ip++; goto stop_conveyor; case '@': ip++; goto start_conveyor; // $^вторым аргументом можно указать вектор направления^$
 
     // 1 | Смещение каретки данных (назад/вперёд)
-    case '<': dp--; ip++;                       goto exec; // Сдвинуть указатель-данных на предыдущую ячейку памяти
-    case '>': dp++; ip++;                       goto exec; // Сдвинуть указатель-данных на следующую ячейку памяти
+    case '<': dp--; ip++;                      goto exec; // Сдвинуть указатель-данных на предыдущую ячейку памяти
+    case '>': dp++; ip++;                      goto exec; // Сдвинуть указатель-данных на следующую ячейку памяти
 
-    // [Extented:
-    // 1 | Вектор направления над потоком выполнения кода (реализация временно заморожена)
-    case 4: /*ip--;*/                           goto exec; // Перенаправить поток кода на шаг назад (использовать в режиме ручного управления, в целях избежания багов)
-    case 5: /*ip++;*/                           goto exec; // Перенаправить поток кода на шаг вперёд (использовать в режиме ручного управления, в целях избежания багов)
-
-    // 2 | Смещение каретки данных (относительное)
-    case '}': dp += cache[ip+1]; ip+=2;         goto exec; // В сторону конца
-    case '{': dp -= cache[ip+1]; ip+=2;         goto exec; // В сторону начала
+//Ex={ 2 | Смещение каретки данных (относительное)
+    case '}': dp += cache[ip+1]; ip+=2;        goto exec; // В сторону конца
+    case '{': dp -= cache[ip+1]; ip+=2;        goto exec; // В сторону начала
     // 2 | Смещение каретки данных (абсолютное)
-    case '~': dp  = cache[ip+1]; ip+=2;         goto exec; // В любую сторону
+    case '~': dp  = cache[ip+1]; ip+=2;        goto exec; // В любую сторону
 
     // 2 | Изменение потока выполнения кода (относительное)
-    case '/':  ip += cache[ip+1];               goto exec; // В сторону конца
-    case '\\': ip -= cache[ip+1];               goto exec; // В сторону начала
+    case '/':  ip += cache[ip+1];              goto exec; // В сторону конца
+    case '\\': ip -= cache[ip+1];              goto exec; // В сторону начала
     // 2 | Изменение потока выполнения кода (абсолютное)
-    case 'j':  ip  = cache[ip+1];               goto exec; // В любую сторону
-    // :Extented]
+    case 'j':  ip  = cache[ip+1];              goto exec; // В любую сторону
+//};
 
     // 1 | Арифметика над данными (инкремент/декремент)
-    case '+': cache[dp]++; ip++;                goto exec;
-    case '-': cache[dp]--; ip++;                goto exec;
+    case '+': cache[dp]++; ip++;               goto exec;
+    case '-': cache[dp]--; ip++;               goto exec;
     
-    // [Extented:
-    // 2 | Арифметика над данными (сложение/вычитание)
-    case 'a': cache[dp] += cache[ip+1]; ip+=2;  goto exec;
-    case 's': cache[dp] -= cache[ip+1]; ip+=2;  goto exec;
+//Ex={ 2 | Арифметика над данными (сложение/вычитание)
+    case 'a': cache[dp] += cache[ip+1]; ip+=2; goto exec;
+    case 's': cache[dp] -= cache[ip+1]; ip+=2; goto exec;
     // 2 | Пересылка данных
-    case '=': cache[dp]  = cache[ip+1]; ip+=2;  goto exec;
-    // :Extented]
+    case '=': cache[dp]  = cache[ip+1]; ip+=2; goto exec;
+//};
 
-    default: printf("\n Неизвестный опкод.");   goto proc_exit;
+    default: printf("\n Неизвестный опкод."); goto proc_exit;
     }
 
     auto_vector_direction_ip__back: switch (cache[ip]){ // auto-ip: left
@@ -163,40 +157,34 @@ int main()
 //};
 
     // 1 | Смещение каретки данных (назад/вперёд)
-    case '<': dp--; ip--;                       goto exec; // Сдвинуть указатель-данных на предыдущую ячейку памяти
-    case '>': dp++; ip--;                       goto exec; // Сдвинуть указатель-данных на следующую ячейку памяти
+    case '<': dp--; ip--;                      goto exec; // Сдвинуть указатель-данных на предыдущую ячейку памяти
+    case '>': dp++; ip--;                      goto exec; // Сдвинуть указатель-данных на следующую ячейку памяти
 
-    // [Extented:
-    // 1 | Вектор направления над потоком выполнения кода (реализация временно заморожена)
-    case 4: /*ip--;*/                           goto exec; // Перенаправить поток кода на шаг назад (использовать в режиме ручного управления, в целях избежания багов)
-    case 5: /*ip++;*/                           goto exec; // Перенаправить поток кода на шаг вперёд (использовать в режиме ручного управления, в целях избежания багов)
-
-    // 2 | Смещение каретки данных (относительное)
-    case '}': dp += cache[ip-1]; ip-=2;         goto exec; // В сторону конца
-    case '{': dp -= cache[ip-1]; ip-=2;         goto exec; // В сторону начала
+//Ex={ 2 | Смещение каретки данных (относительное)
+    case '}': dp += cache[ip+1]; ip-=2;        goto exec; // В сторону конца
+    case '{': dp -= cache[ip+1]; ip-=2;        goto exec; // В сторону начала
     // 2 | Смещение каретки данных (абсолютное)
-    case '~': dp  = cache[ip-1]; ip-=2;         goto exec; // В любую сторону
+    case '~': dp  = cache[ip+1]; ip-=2;        goto exec; // В любую сторону
 
     // 2 | Изменение потока выполнения кода (относительное)
-    case '/':  ip += cache[ip-1];               goto exec; // В сторону конца
-    case '\\': ip -= cache[ip-1];               goto exec; // В сторону начала
+    case '/':  ip += cache[ip+1];              goto exec; // В сторону конца
+    case '\\': ip -= cache[ip+1];              goto exec; // В сторону начала
     // 2 | Изменение потока выполнения кода (абсолютное)
-    case 'j':  ip  = cache[ip-1];               goto exec; // В любую сторону
-    // :Extented]
+    case 'j':  ip  = cache[ip+1];              goto exec; // В любую сторону
+//};
 
     // 1 | Арифметика над данными (инкремент/декремент)
-    case '+': cache[dp]++; ip--;                goto exec;
-    case '-': cache[dp]--; ip--;                goto exec;
+    case '+': cache[dp]++; ip--;               goto exec;
+    case '-': cache[dp]--; ip--;               goto exec;
     
-    // [Extented:
-    // 2 | Арифметика над данными (сложение/вычитание)
-    case 'a': cache[dp] += cache[ip-1]; ip-=2;  goto exec;
-    case 's': cache[dp] -= cache[ip-1]; ip-=2;  goto exec;
+//Ex={ 2 | Арифметика над данными (сложение/вычитание)
+    case 'a': cache[dp] += cache[ip+1]; ip-=2; goto exec;
+    case 's': cache[dp] -= cache[ip+1]; ip-=2; goto exec;
     // 2 | Пересылка данных
-    case '=': cache[dp]  = cache[ip-1]; ip-=2;  goto exec;
-    // :Extented]
+    case '=': cache[dp]  = cache[ip+1]; ip-=2; goto exec;
+//};
 
-    default: printf("\n Неизвестный опкод.");   goto proc_exit;
+    default: printf("\n Неизвестный опкод."); goto proc_exit;
     }
 
     // Заглушки
@@ -212,6 +200,11 @@ int main()
 }
 
 /*
+    // [Extented:
+    // 1 | Вектор направления над потоком выполнения кода (реализация временно заморожена)
+    case 4: ip--;                        goto exec; // Перенаправить поток кода на шаг назад (использовать в режиме ручного управления, в целях избежания багов)
+    case 5: ip++;                        goto exec; // Перенаправить поток кода на шаг вперёд (использовать в режиме ручного управления, в целях избежания багов)
+
     case '+': cache[ip]++;                       ip++;  goto exec; // инкремент текущей ячейки памяти
     case '-': cache[ip]--;                       ip++;  goto exec; // декремент текущей ячейки памяти
 
