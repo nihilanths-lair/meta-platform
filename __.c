@@ -164,8 +164,8 @@ int main()
     case 5: /*ip++;*/                           goto exec; // Перенаправить поток кода на шаг вперёд (использовать в режиме ручного управления, в целях избежания багов)
 
     // 2 | Произвольное (абсолютное) смещение каретки данных и изменение потока выполнения кода (в любом направлении и на любое место)
-    case '~': dp = cache[ip+1]; ip-=2;          goto exec;
-    case 'j': ip = cache[ip+1];                 goto exec;
+    case '~': dp = cache[ip-1]; ip-=2;          goto exec;
+    case 'j': ip = cache[ip-1];                 goto exec;
     // :Extented]
 
     // 1 | Арифметика над данными (инкремент/декремент значения ячейки памяти)
@@ -174,10 +174,10 @@ int main()
     
     // [Extented:
     // 2 | Арифметика над данными
-    case 'a': cache[dp] += cache[ip+1]; ip-=2;  goto exec;
-    case 's': cache[dp] -= cache[ip+1]; ip-=2;  goto exec;
+    case 'a': cache[dp] += cache[ip-1]; ip-=2;  goto exec;
+    case 's': cache[dp] -= cache[ip-1]; ip-=2;  goto exec;
     // 2 | Пересылка данных
-    case '=': cache[dp]  = cache[ip+1]; ip-=2;  goto exec;
+    case '=': cache[dp]  = cache[ip-1]; ip-=2;  goto exec;
     // :Extented]
 
     default: printf("\n Неизвестный опкод.");   goto proc_exit;
