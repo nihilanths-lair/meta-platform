@@ -49,8 +49,13 @@ int main(int argc, char * argv[])
     printf("\n | Registry |");
     printf("\n |          ·--------------------·");
     printf("\n | IP (указатель команд): 0x%04X |", ip);
-    printf("\n | DP (указатель данных): 0x%04X |", dp);
-    printf("\n ·-------------------------------·");
+    printf("\n | DP (указатель данных): 0x%04X ·--------·", dp);
+    // Маски для битов (флагов)
+    #define F_ZF 0x01 // Первый бит — флаг нуля
+    #define F_SF 0x02 // Второй бит — флаг знака
+    register unsigned char flags = 0; // Регистр флагов VPU
+    printf("\n | ZF (флаг нуля): %d | SF (флаг знака): %d |", (flags & F_ZF) ? 1 : 0, (flags & F_SF) ? 1 : 0);
+    printf("\n ·----------------------------------------·");
     int prev_ip = ip;
     int prev_dp = dp;
     printf("\n ·-------·");
@@ -67,6 +72,7 @@ int main(int argc, char * argv[])
     printf("\n |          ·------------------------------·");
     printf("\n | IP (указатель команд): 0x%04X -> 0x%04X |", prev_ip, ip);
     printf("\n | DP (указатель данных): 0x%04X -> 0x%04X |", prev_dp, dp);
+    printf("\n | ZF (флаг нуля): %d | SF (флаг знака): %d  |", (flags & F_ZF) ? 1 : 0, (flags & F_SF) ? 1 : 0);
     printf("\n ·-----------------------------------------·");
     prev_ip = ip;
     prev_dp = dp;
@@ -156,6 +162,44 @@ int main(int argc, char * argv[])
     // 2 | Пересылка данных
     case '=': cache[dp]  = cache[ip+1]; ip+=2; goto exec;
 //};
+
+    case 'c': // CMP m8, i8 | Сравнить ячейку памяти с константой (Длина: 2 байта)
+    {
+        unsigned char a = cache[dp];     // Значение из памяти
+        unsigned char b = cache[ip + 1]; // Константа из кода
+        int res = a - b;                 // Временный результат вычитания
+        flags = 0;                       // Сбрасываем старые флаги
+        if (res == 0) flags |= F_ZF;     // 1. Выставляем флаг нуля (если числа равны, res будет 0)
+        if (res < 0)  flags |= F_SF;     // 2. Выставляем флаг знака (если a < b, res будет отрицательным)
+        ip += 2;
+        goto exec;
+    }
+    // === РАВНО / НЕ РАВНО ===
+    case 'E': // JE (Jump if Equal) | Прыжок, если равно (==)
+        if (flags & F_ZF) ip = cache[ip+1]; else ip+=2;
+        goto exec;
+
+    case 'N': // JNE (Jump if Not Equal) | Прыжок, если НЕ равно (!=)
+        if (!(flags & F_ZF)) ip = cache[ip+1]; else ip+=2;
+        goto exec;
+
+    // === МЕНЬШЕ / МЕНЬШЕ ИЛИ РАВНО ===
+    case 'L': // JL (Jump if Less) | Прыжок, если меньше (<)
+        if (flags & F_SF) ip = cache[ip+1]; else ip+=2;
+        goto exec;
+
+    case 'l': // JLE (Jump if Less or Equal) | Прыжок, если меньше или равно (<=)
+        if ((flags & F_SF) || (flags & F_ZF)) ip = cache[ip+1]; else ip+=2;
+        goto exec;
+
+    // === БОЛЬШЕ / БОЛЬШЕ ИЛИ РАВНО ===
+    case 'G': // JG (Jump if Greater) | Прыжок, если больше (>)
+        if (!(flags & F_SF) && !(flags & F_ZF)) ip = cache[ip+1]; else ip+=2;
+        goto exec;
+
+    case 'g': // JGE (Jump if Greater or Equal) | Прыжок, если больше или равно (>=)
+        if (!(flags & F_SF)) ip = cache[ip+1]; else ip+=2;
+        goto exec;
 
     default: printf("\n Неизвестный опкод."); goto proc_exit;
     }
