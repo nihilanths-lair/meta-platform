@@ -26,18 +26,20 @@ int main()
     for (int i = 161; i <= 167; i++) ascii[i] = ' '; // Глушим символы-призраки
     for (int i = 169; i <= 183; i++) ascii[i] = ' ';
     for (int i = 185; i <= 191; i++) ascii[i] = ' ';
-    loop_(256) printf("\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
-    unsigned char cache[0x100] =
+    //FILE * file = fopen("stream.dump", "wb");
+    loop_(256) fprintf(stdout, "\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
+    unsigned char cache[0x200] =
     {
-        [0 ... 15] = 0,
-        '=', 255,
-        '+',
-        '+',
-        '+',
-        '>'
+        [256] = '+',
+        [257] = '+',
+        [258] = '+',
+        [259] = '>',
+        [260] = '=',
+        [261] = 'y'//#79h,#121d
+        //'x', // переключаем вектор направления потока кода
     };
-    register unsigned char ip = 16; // зона (секция) кода
-    register unsigned char dp = 0; // зона (секция) данных
+    register unsigned short ip = 256; // зона (секция) кода
+    register unsigned short dp = 0; // зона (секция) данных
     // Программная эмуляция абстрактного процессора
     printf("\n Эмуляция начата.");
     printf("\n Отладчик памяти.\n");
@@ -49,8 +51,8 @@ int main()
     printf("\n | Registry |                                          |");
     printf("\n ·----------·                                          |");
     printf("\n |                                                     |");
-    printf("\n | IP (указатель команд): 0x%02X.                        |", ip);
-    printf("\n | DP (указатель данных): 0x%02X.                        |", dp);
+    printf("\n | IP (указатель команд): 0x%04X.                      |", ip);
+    printf("\n | DP (указатель данных): 0x%04X.                      |", dp);
     printf("\n ·-----------------------------------------------------·");
     int prev_ip = ip;
     int prev_dp = dp;
@@ -64,39 +66,49 @@ int main()
     printf("\n Итерация: %d.", ++itr);
     printf("\n Код операции: 0x%02X -> 0x%02X.", prev_ops, cache[ip]);
     prev_ops = cache[ip];
-    printf("\n ·----------·------------------------------------------·");
-    printf("\n | Registry |                                          |");
-    printf("\n ·----------·                                          |");
-    printf("\n |                                                     |");
-    printf("\n | IP (указатель команд): 0x%02X -> 0x%02X.                |", prev_ip, ip);
-    printf("\n | DP (указатель данных): 0x%02X -> 0x%02X.                |", prev_dp, dp);
-    printf("\n ·-----------------------------------------------------·");
+    printf("\n ·----------·");
+    printf("\n | Registry |");
+    printf("\n |          ·------------------------------·");
+    printf("\n | IP (указатель команд): 0x%04X -> 0x%04X |", prev_ip, ip);
+    printf("\n | DP (указатель данных): 0x%04X -> 0x%04X |", prev_dp, dp);
+    printf("\n ·-----------------------------------------·");
     prev_ip = ip;
     prev_dp = dp;
     //printf("\n [%02X] = %02X", );
-    printf("\n ·--------·------------------------------------------------·------------------·");
-    printf("\n | Memory |                                                |                  |");
-    printf("\n ·--------·                                                |                  |");
-    printf("\n |                                                         |                  |");
-    printf("\n |        ");
+    printf("\n ·-------·");
+    printf("\n | Memory \\");
+    printf("\n |         ·-------------------------------------------------·------------------·");
+    printf("\n |         |");
     exec_2:
     // Шапка (заголовок)
     for (int i = 0; i < 16; i++) printf(" %02X", i);
     printf(" | ");
     for (int i = 0; i < 16; i++) printf("%01X", i);
     printf(" |");
-    printf("\n |                                                         |                  |");
+    printf("\n |                                                           |                  |");
     // Тело
     for (int i = 0, l; i < 16; i++)
     {
         l = i*16;
-        printf("\n | %02X=%03d:", l, l); // Смещение
+        printf("\n | %03d(%02Xh):", l, l); // Смещение
         for (int j = 0; j < 16; j++) printf(" %02X", cache[l+j]);
         printf(" | ");
         for (int j = 0; j < 16; j++) printf("%c", ascii[cache[l+j]]);
         printf(" |");
     }
-    printf("\n ·---------------------------------------------------------·------------------·\n");
+    //printf("\n ·---------------------------------------------------------·------------------·\n");
+    printf("\n |                                                           ·-·                ·-·");
+    // Тело
+    for (int i = 16, l; i < 32; i++)
+    {
+        l = i*16;
+        printf("\n | %03ld(%04Xh):", l, l); // Смещение
+        for (int j = 0; j < 16; j++) printf(" %02X", cache[l+j]);
+        printf(" | ");
+        for (int j = 0; j < 16; j++) printf("%c", ascii[cache[l+j]]);
+        printf(" |");
+    }
+    printf("\n ·-------------------------------------------------------------·------------------·\n");
     ///
     // Instruction Execution Flow Control (IEFC) / Управление Потоком Выполнения Инструкций (УПВИ)
     ///
