@@ -6,7 +6,7 @@
 
 char ascii[256];
 
-int main()
+int main(int argc, char * argv[])
 {
     setlocale(0, "");
     loop_(256) ascii[_itr] = _itr;
@@ -27,19 +27,17 @@ int main()
     for (int i = 169; i <= 183; i++) ascii[i] = ' ';
     for (int i = 185; i <= 191; i++) ascii[i] = ' ';
     //FILE * file = fopen("stream.dump", "wb");
-    loop_(256) fprintf(stdout, "\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
-    unsigned char cache[0x200] =
-    {
-        [256] = '+',
-        [257] = '+',
-        [258] = '+',
-        [259] = '>',
-        [260] = '=',
-        [261] = 'y'//#79h,#121d
-        //'x', // переключаем вектор направления потока кода
-    };
+    //loop_(256) fprintf(stdout, "\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
+    unsigned char cache[0x200] = {0};
     register unsigned short ip = 256; // зона (секция) кода
-    register unsigned short dp = 0; // зона (секция) данных
+    register unsigned short dp = 0;   // зона (секция) данных
+    printf(" Принято кол-во аргументов: %d", argc);
+    for (int i = 0; i < argc; i++) printf("\n Аргумент №%d: %s", i+1, argv[i]);
+    FILE * file = fopen(argv[1], "rb");
+    if (file == NULL) { printf("\n Ошибка открытия файла программы на чтение"); return 0; }
+    char ch;
+    for (int i = ip; ((ch = fgetc(file)) != EOF); i++) { cache[i] = ch; }
+    fclose(file);
     // Программная эмуляция абстрактного процессора
     printf("\n Эмуляция начата.");
     printf("\n Отладчик памяти.\n");
@@ -47,20 +45,18 @@ int main()
     printf("\n Итерация: %d.", itr);
     printf("\n Код операции: 0x%02X.", cache[ip]);
     int prev_ops = cache[ip];
-    printf("\n ·----------·------------------------------------------·");
-    printf("\n | Registry |                                          |");
-    printf("\n ·----------·                                          |");
-    printf("\n |                                                     |");
-    printf("\n | IP (указатель команд): 0x%04X.                      |", ip);
-    printf("\n | DP (указатель данных): 0x%04X.                      |", dp);
-    printf("\n ·-----------------------------------------------------·");
+    printf("\n ·----------·--------------------·");
+    printf("\n | Registry |                    |");
+    printf("\n ·----------·                    |");
+    printf("\n | IP (указатель команд): 0x%04X |", ip);
+    printf("\n | DP (указатель данных): 0x%04X |", dp);
+    printf("\n ·-------------------------------·");
     int prev_ip = ip;
     int prev_dp = dp;
-    printf("\n ·--------·------------------------------------------------·------------------·");
-    printf("\n | Memory |                                                |                  |");
-    printf("\n ·--------·                                                |                  |");
-    printf("\n |                                                         |                  |");
-    printf("\n |        ");
+    printf("\n ·-------·");
+    printf("\n | Memory \\");
+    printf("\n |         ·-------------------------------------------------·------------------·");
+    printf("\n |         |");
     goto exec_2;
     exec:
     printf("\n Итерация: %d.", ++itr);
