@@ -29,8 +29,8 @@ int main(int argc, char * argv[])
     //FILE * file = fopen("stream.dump", "wb");
     //loop_(256) fprintf(stdout, "\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
     unsigned char cache[0x300] = {0};
-    register unsigned short ip = 512; // зона (секция) кода RW (чтение и запись)
-    register unsigned short dp = 256; // зона (секция) данных RW (чтение и запись)
+    register unsigned short ip = 512; // зона (секция) кода R/W/E (чтение/запись/исполнение)
+    register unsigned short dp = 256; // зона (секция) данных R/W (чтение/запись)
     printf(" Принято кол-во аргументов: %d", argc);
     for (int i = 0; i < argc; i++) printf("\n Аргумент №%d: %s", i+1, argv[i]);
     FILE * file = fopen(argv[1], "rb");
