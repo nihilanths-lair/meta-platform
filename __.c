@@ -28,9 +28,9 @@ int main(int argc, char * argv[])
     for (int i = 185; i <= 191; i++) ascii[i] = ' ';
     //FILE * file = fopen("stream.dump", "wb");
     //loop_(256) fprintf(stdout, "\n №%-3d | %02X | %03d | %c", _itr+1, _itr, _itr, ascii[_itr]);
-    unsigned char cache[0x200] = {0};
-    register unsigned short ip = 256; // зона (секция) кода
-    register unsigned short dp = 0;   // зона (секция) данных
+    unsigned char cache[0x300] = {0};
+    register unsigned short ip = 512; // зона (секция) кода RW (чтение и запись)
+    register unsigned short dp = 256; // зона (секция) данных RW (чтение и запись)
     printf(" Принято кол-во аргументов: %d", argc);
     for (int i = 0; i < argc; i++) printf("\n Аргумент №%d: %s", i+1, argv[i]);
     FILE * file = fopen(argv[1], "rb");
@@ -82,8 +82,7 @@ int main(int argc, char * argv[])
     for (int i = 0; i < 16; i++) printf("%01X", i);
     printf(" |");
     printf("\n |                                                           |                  |");
-    // Тело
-    for (int i = 0, l; i < 16; i++)
+    for (int i = 0, l; i < 16; i++) // Секция 1
     {
         l = i*16;
         printf("\n | %03d(%02Xh):", l, l); // Смещение
@@ -94,8 +93,18 @@ int main(int argc, char * argv[])
     }
     //printf("\n ·---------------------------------------------------------·------------------·\n");
     printf("\n |                                                           ·-·                ·-·");
-    // Тело
-    for (int i = 16, l; i < 32; i++)
+    for (int i = 16, l; i < 32; i++) // Секция 2
+    {
+        l = i*16;
+        printf("\n | %03ld(%04Xh):", l, l); // Смещение
+        for (int j = 0; j < 16; j++) printf(" %02X", cache[l+j]);
+        printf(" | ");
+        for (int j = 0; j < 16; j++) printf("%c", ascii[cache[l+j]]);
+        printf(" |");
+    }
+    //printf("\n ·-------------------------------------------------------------·------------------·\n");
+    printf("\n |                                                             |                  |");
+    for (int i = 32, l; i < 48; i++) // Секция 3
     {
         l = i*16;
         printf("\n | %03ld(%04Xh):", l, l); // Смещение
