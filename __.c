@@ -54,7 +54,8 @@ int main(int argc, char * argv[])
     #define F_ZF 0x01 // Первый бит — флаг нуля
     #define F_SF 0x02 // Второй бит — флаг знака
     register unsigned char flags = 0; // Регистр флагов VPU
-    printf("\n | ZF (флаг нуля): %d | SF (флаг знака): %d |", (flags & F_ZF) ? 1 : 0, (flags & F_SF) ? 1 : 0);
+    //printf("\n | ZF (флаг нуля): %d | SF (флаг знака): %d |", (flags & F_ZF) ? 1 : 0, (flags & F_SF) ? 1 : 0);
+    printf("\n | ZF (флаг нуля): %d | SF (флаг знака): %d |", (flags >> 0) & 1, (flags >> 1) & 1); // ZF сидит на 0-м бите | SF сидит на 1-м бите
     printf("\n ·----------------------------------------·");
     int prev_ip = ip;
     int prev_dp = dp;
@@ -72,7 +73,8 @@ int main(int argc, char * argv[])
     printf("\n |          ·------------------------------·");
     printf("\n | IP (указатель команд): 0x%04X -> 0x%04X |", prev_ip, ip);
     printf("\n | DP (указатель данных): 0x%04X -> 0x%04X |", prev_dp, dp);
-    printf("\n | ZF (флаг нуля): %d | SF (флаг знака): %d  |", (flags & F_ZF) ? 1 : 0, (flags & F_SF) ? 1 : 0);
+    //printf("\n | ZF (флаг нуля): %d | SF (флаг знака): %d  |", (flags & F_ZF) ? 1 : 0, (flags & F_SF) ? 1 : 0);
+    printf("\n | ZF (флаг нуля): %d | SF (флаг знака): %d  |", (flags >> 0) & 1, (flags >> 1) & 1); // ZF сидит на 0-м бите | SF сидит на 1-м бите
     printf("\n ·-----------------------------------------·");
     prev_ip = ip;
     prev_dp = dp;
