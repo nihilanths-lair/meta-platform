@@ -142,14 +142,21 @@ int main(int argc, char * argv[])
 //Ex={ 2 | Смещение каретки данных (относительное)
     case '}': dp += cache[ip+1]; ip+=2; goto exec; // В сторону конца
     case '{': dp -= cache[ip+1]; ip+=2; goto exec; // В сторону начала
+    // === УСТАНОВКА УКАЗАТЕЛЯ ДАННЫХ (3 байта: Опкод + 2 байта адреса) ===
     // 2 | Смещение каретки данных (абсолютное)
-    case '~': dp  = cache[ip+1]; ip+=2; goto exec; // В любую сторону
+    case '~':
+        dp = (cache[ip+1] << 8) | cache[ip+2]; // Склеиваем 16-битный адрес из двух ячеек памяти
+        ip+=3; // Перешагиваем опкод и два байта аргумента
+        goto exec;
 
     // 2 | Изменение потока выполнения кода (относительное)
     case '/':  ip += cache[ip+1]; goto exec; // В сторону конца
     case '\\': ip -= cache[ip+1]; goto exec; // В сторону начала
+    // === БЕЗУСЛОВНЫЙ ПРЫЖОК КОДА (3 байта: Опкод + 2 байта адреса) ===
     // 2 | Изменение потока выполнения кода (абсолютное)
-    case 'j':  ip  = cache[ip+1]; goto exec; // В любую сторону
+    case 'j': // В любую сторону
+        ip = (cache[ip+1] << 8) | cache[ip+2]; // Телепортируем ip на точный 16-битный адрес
+        goto exec;
 //};
 
     // 1 | Арифметика над данными (инкремент/декремент)
@@ -157,12 +164,12 @@ int main(int argc, char * argv[])
     case '-': cache[dp]--; ip++; goto exec;
     
 //Ex={ 2 | Арифметика над данными (сложение/вычитание)
-    case 'a': cache[dp] += cache[ip+1]; ip+=2; goto exec;
-    case 's': cache[dp] -= cache[ip+1]; ip+=2; goto exec;
-    case 'm': cache[dp] *= cache[ip+1]; ip+=2; goto exec;
-    case 'd': cache[dp] /= cache[ip+1]; ip+=2; goto exec;
+    case 'a': cache[dp] += cache[ip+1]; ip += 2; goto exec;
+    case 's': cache[dp] -= cache[ip+1]; ip += 2; goto exec;
+    case 'm': cache[dp] *= cache[ip+1]; ip += 2; goto exec;
+    case 'd': cache[dp] /= cache[ip+1]; ip += 2; goto exec;
     // 2 | Пересылка данных
-    case '=': cache[dp]  = cache[ip+1]; ip+=2; goto exec;
+    case '=': cache[dp]  = cache[ip+1]; ip += 2; goto exec;
 //};
 
     case 'c': // CMP m8, i8 | Сравнить ячейку памяти с константой (Длина: 2 байта)
@@ -173,34 +180,41 @@ int main(int argc, char * argv[])
         flags = 0;                      // Сбрасываем старые флаги
         if (res == 0) flags |= F_ZF;    // 1. Выставляем флаг нуля (если числа равны, res будет 0)
         if (res < 0)  flags |= F_SF;    // 2. Выставляем флаг знака (если a < b, res будет отрицательным)
-        ip+=2;
+        ip += 2;
         goto exec;
     }
+    // === УСЛОВНЫЕ ПЕРЕХОДЫ (3 байта: Опкод + 2 байта адреса) ===
     // === РАВНО / НЕ РАВНО ===
     case 'E': // JE (Jump if Equal) | Прыжок, если равно (==)
-        if (flags & F_ZF) ip = cache[ip+1]; else ip+=2;
+        if (flags & F_ZF) ip = (cache[ip+1] << 8) | cache[ip+2];
+        else ip += 3;
         goto exec;
 
     case 'N': // JNE (Jump if Not Equal) | Прыжок, если НЕ равно (!=)
-        if (!(flags & F_ZF)) ip = cache[ip+1]; else ip+=2;
+        if (!(flags & F_ZF)) ip = (cache[ip+1] << 8) | cache[ip+2];
+        else ip += 3;
         goto exec;
 
     // === МЕНЬШЕ / МЕНЬШЕ ИЛИ РАВНО ===
     case 'L': // JL (Jump if Less) | Прыжок, если меньше (<)
-        if (flags & F_SF) ip = cache[ip+1]; else ip+=2;
+        if (flags & F_SF) ip = (cache[ip+1] << 8) | cache[ip+2];
+        else ip += 3;
         goto exec;
 
     case 'l': // JLE (Jump if Less or Equal) | Прыжок, если меньше или равно (<=)
-        if ((flags & F_SF) || (flags & F_ZF)) ip = cache[ip+1]; else ip+=2;
+        if ((flags & F_SF) || (flags & F_ZF)) ip = (cache[ip+1] << 8) | cache[ip+2];
+        else ip += 3;
         goto exec;
 
     // === БОЛЬШЕ / БОЛЬШЕ ИЛИ РАВНО ===
     case 'G': // JG (Jump if Greater) | Прыжок, если больше (>)
-        if (!(flags & F_SF) && !(flags & F_ZF)) ip = cache[ip+1]; else ip+=2;
+        if (!(flags & F_SF) && !(flags & F_ZF)) ip = (cache[ip+1] << 8) | cache[ip+2];
+        else ip += 3;
         goto exec;
 
     case 'g': // JGE (Jump if Greater or Equal) | Прыжок, если больше или равно (>=)
-        if (!(flags & F_SF)) ip = cache[ip+1]; else ip+=2;
+        if (!(flags & F_SF)) ip = (cache[ip+1] << 8) | cache[ip+2];
+        else ip += 3;
         goto exec;
 
     default: printf("\n Неизвестный опкод."); goto proc_exit;
