@@ -170,7 +170,21 @@ int main(int argc, char * argv[])
     case 'd': cache[dp] /= cache[ip+1]; ip += 2; goto exec;
     // 2 | Пересылка данных
     case '=': cache[dp]  = cache[ip+1]; ip += 2; goto exec;
-//};
+
+    case 'I': // Indirect Load | cache[dp] = cache[cache[ptr]]
+    {
+        unsigned short ptr = (cache[ip+1] << 8) | cache[ip+2]; // Взяли адрес-указатель
+        cache[dp] = cache[(cache[ptr] << 8) | cache[ptr+1]]; // Прочитали данные «матрёшкой»
+        ip += 3;
+        goto exec;
+    }
+    case 'O': // Indirect Store | cache[cache[ptr]] = cache[dp]
+    {
+        unsigned short ptr = (cache[ip+1] << 8) | cache[ip+2]; // Взяли адрес-указатель
+        cache[(cache[ptr] << 8) | cache[ptr+1]] = cache[dp]; // Записали данные в «матрёшку»
+        ip += 3;
+        goto exec;
+    }
 
     case 'c': // CMP m8, i8 | Сравнить ячейку памяти с константой (Длина: 2 байта)
     {
