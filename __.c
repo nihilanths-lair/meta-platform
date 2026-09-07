@@ -45,9 +45,9 @@ int main(int argc, char * argv[])
     printf("\n Итерация: %d.", itr);
     printf("\n Код операции: 0x%02X.", cache[ip]);
     int prev_ops = cache[ip];
-    printf("\n ·----------·--------------------·");
-    printf("\n | Registry |                    |");
-    printf("\n ·----------·                    |");
+    printf("\n ·----------·");
+    printf("\n | Registry |");
+    printf("\n |          ·--------------------·");
     printf("\n | IP (указатель команд): 0x%04X |", ip);
     printf("\n | DP (указатель данных): 0x%04X |", dp);
     printf("\n ·-------------------------------·");
