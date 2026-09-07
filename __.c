@@ -151,6 +151,8 @@ int main(int argc, char * argv[])
 //Ex={ 2 | Арифметика над данными (сложение/вычитание)
     case 'a': cache[dp] += cache[ip+1]; ip+=2; goto exec;
     case 's': cache[dp] -= cache[ip+1]; ip+=2; goto exec;
+    case 'm': cache[dp] *= cache[ip+1]; ip+=2; goto exec;
+    case 'd': cache[dp] /= cache[ip+1]; ip+=2; goto exec;
     // 2 | Пересылка данных
     case '=': cache[dp]  = cache[ip+1]; ip+=2; goto exec;
 //};
@@ -170,32 +172,12 @@ int main(int argc, char * argv[])
 //};
 
     // 1 | Смещение каретки данных (назад/вперёд)
-    case '<': dp--; ip--;                      goto exec; // Сдвинуть указатель-данных на предыдущую ячейку памяти
-    case '>': dp++; ip--;                      goto exec; // Сдвинуть указатель-данных на следующую ячейку памяти
-
-//Ex={ 2 | Смещение каретки данных (относительное)
-    case '}': dp += cache[ip+1]; ip-=2;        goto exec; // В сторону конца
-    case '{': dp -= cache[ip+1]; ip-=2;        goto exec; // В сторону начала
-    // 2 | Смещение каретки данных (абсолютное)
-    case '~': dp  = cache[ip+1]; ip-=2;        goto exec; // В любую сторону
-
-    // 2 | Изменение потока выполнения кода (относительное)
-    case '/':  ip += cache[ip+1];              goto exec; // В сторону конца
-    case '\\': ip -= cache[ip+1];              goto exec; // В сторону начала
-    // 2 | Изменение потока выполнения кода (абсолютное)
-    case 'j':  ip  = cache[ip+1];              goto exec; // В любую сторону
-//};
+    case '<': dp--; ip--; goto exec;
+    case '>': dp++; ip--; goto exec;
 
     // 1 | Арифметика над данными (инкремент/декремент)
-    case '+': cache[dp]++; ip--;               goto exec;
-    case '-': cache[dp]--; ip--;               goto exec;
-    
-//Ex={ 2 | Арифметика над данными (сложение/вычитание)
-    case 'a': cache[dp] += cache[ip+1]; ip-=2; goto exec;
-    case 's': cache[dp] -= cache[ip+1]; ip-=2; goto exec;
-    // 2 | Пересылка данных
-    case '=': cache[dp]  = cache[ip+1]; ip-=2; goto exec;
-//};
+    case '+': cache[dp]++; ip--; goto exec;
+    case '-': cache[dp]--; ip--; goto exec;
 
     default: printf("\n Неизвестный опкод."); goto proc_exit;
     }
