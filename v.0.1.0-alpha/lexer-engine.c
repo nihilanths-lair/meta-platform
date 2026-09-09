@@ -9,13 +9,17 @@ int main(int argc, char *argv[])
 {
     setlocale(0, "");
     printf(" Количество аргументов: %d", argc);
-    for (int i = 0; i < argc; i++) printf("\n Имя аргумента %d: %s", i, argv[i]);
-    ln_();
-    
-    FILE *file = fopen(argv[1], "rb");
-    if (file != NULL)
+    for (int i = 0; i < argc; i++)
     {
-        printf(" Не удалось открыть файл <%s> на чтение", argv[1]);
+        ln_();
+        printf(" Имя аргумента %d: %s", i, argv[i]);
+    }
+    FILE *file = fopen(argv[1], "rb");
+    if (file == NULL)
+    {
+        ln_();
+        printf(" Не удалось открыть файл <%s>", argv[1]);
+        return 0;
     }
     fclose(file);
     return 0;
