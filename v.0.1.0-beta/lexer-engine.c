@@ -37,8 +37,9 @@ int main(int argc, char *argv[])
         ln_(); printf(" text_size: %llu", text_size);
         ln_(); for (int i = 0; i < file_size; i++) putchar(text[i]);
         ln_();
-        for (int i = 0; i < file_size; i++)
+        for (int i = 0, j, t1 = 0, t2 = 0; i < file_size; i++)
         {
+            j = i;
             while (i < file_size)
             {
                 if (text[i] == '\r' && text[i+1] == '\n') break; // Если среда Windows
@@ -46,18 +47,19 @@ int main(int argc, char *argv[])
                 i++;
             }
             putchar('\t');
-            while (i < file_size)
+            while (j < file_size)
             {
-                if (text[i] == '\r' && text[i+1] == '\n') // Если среда Windows
+                if (text[j] == '\r' && text[j+1] == '\n') // Если среда Windows
                 {
-                    printf(" %02X", text[i]);
-                    i++;
-                    printf(" %02X", text[i]);
+                    printf(" %02X", text[j]);
+                    j++;
+                    printf(" %02X", text[j]);
+                    j++;
                     ln_();
                     break;
                 }
-                printf(" %02X", text[i]);
-                i++;
+                printf(" %02X", text[j]);
+                j++;
             }
         }
         execution();
