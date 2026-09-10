@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
         ln_(); printf(" text_size: %llu", text_size);
         ln_(); for (int i = 0; i < file_size; i++) putchar(text[i]);
         ln_();
-        for (int i = 0, j, t1 = 0, t2 = 0; i < file_size; i++)
+        for (int i = 0, j; i < file_size; i++)
         {
             j = i;
             while (i < file_size)
