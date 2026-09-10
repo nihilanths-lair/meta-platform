@@ -36,19 +36,29 @@ int main(int argc, char *argv[])
         size_t text_size = fread(text, sizeof (char), file_size, file);
         ln_(); printf(" text_size: %llu", text_size);
         ln_(); for (int i = 0; i < file_size; i++) putchar(text[i]);
-        ln_(); for (int i = 0; i < file_size; i++) printf(" %2c", text[i]);
         ln_();
         for (int i = 0; i < file_size; i++)
         {
-            if (text[i] == '\r' && text[i+1] == '\n') // Если среда Windows
+            while (i < file_size)
             {
+                if (text[i] == '\r' && text[i+1] == '\n') break; // Если среда Windows
+                printf(" %2c", text[i]);
+                i++;
+            }
+            putchar('\t');
+            while (i < file_size)
+            {
+                if (text[i] == '\r' && text[i+1] == '\n') // Если среда Windows
+                {
+                    printf(" %02X", text[i]);
+                    i++;
+                    printf(" %02X", text[i]);
+                    ln_();
+                    break;
+                }
                 printf(" %02X", text[i]);
                 i++;
-                printf(" %02X", text[i]);
-                ln_();
-                continue;
             }
-            printf(" %02X", text[i]);
         }
         execution();
     }
