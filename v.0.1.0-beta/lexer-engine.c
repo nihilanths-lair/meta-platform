@@ -1,9 +1,12 @@
 #include <locale.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "function-declaration.txt"
 
 #define ln_() putchar('\n')
+#define x_ {
+#define _x }
 
 int main(int argc, char *argv[])
 {
@@ -21,6 +24,24 @@ int main(int argc, char *argv[])
         printf(" Не удалось открыть файл <%s>", argv[1]);
         return 0;
     }
+    // I и II (считывание всего текста целиком в память или сканирование текста прямо в файле)
+    switch (1) x_
+    case 1: // Загрузка всего текста с файла прямо в память, вся работа идёт только строго в памяти
+    {
+        fseek(file, 0, SEEK_END);
+        long file_size = ftell(file);
+        rewind(file);
+        ln_(); printf(" file_size: %lu", file_size);
+        unsigned char *text = (unsigned char *) malloc(file_size);
+        size_t text_size = fread(text, sizeof (char), file_size, file);
+        ln_(); printf(" text_size: %llu", text_size);
+        ln_(); for (int i = 0; i < file_size; i++) putchar(text[i]);
+    }
+    case 2: // Сканирование файла, без полной загрузки в память
+    {
+        // ... //
+    }
+    _x
     fclose(file);
     return 0;
 }
