@@ -4,7 +4,9 @@
 
 #include "function-declaration.txt"
 
-#define ln_() putchar('\n')
+#define ln_(arg) for (int _ln = 0; _ln < arg; _ln++) putchar('\n')
+#define sp_(arg) for (int _sp = 0; _sp < arg; _sp++) putchar(' ')
+
 #define x_ {
 #define _x }
 
@@ -14,13 +16,13 @@ int main(int argc, char *argv[])
     printf(" Количество аргументов: %d", argc);
     for (int i = 0; i < argc; i++)
     {
-        ln_();
+        ln_(1);
         printf(" Имя аргумента %d: %s", i, argv[i]);
     }
     FILE *file = fopen(argv[1], "rb");
     if (file == NULL)
     {
-        ln_();
+        ln_(1);
         printf(" Не удалось открыть файл <%s>", argv[1]);
         return 0;
     }
@@ -31,12 +33,15 @@ int main(int argc, char *argv[])
         fseek(file, 0, SEEK_END);
         long file_size = ftell(file);
         rewind(file);
-        ln_(); printf(" file_size: %lu", file_size);
+        ln_(1);
+        printf(" file_size: %lu", file_size);
         unsigned char *text = (unsigned char *) malloc(file_size);
         size_t text_size = fread(text, sizeof (char), file_size, file);
-        ln_(); printf(" text_size: %llu", text_size);
-        ln_(); for (int i = 0; i < file_size; i++) putchar(text[i]);
-        ln_();
+        ln_(1);
+        printf(" text_size: %llu", text_size);
+        ln_(1);
+        for (int i = 0; i < file_size; i++) putchar(text[i]);
+        ln_(1);
         for (int i = 0, j; i < file_size; i++)
         {
             j = i;
@@ -46,7 +51,7 @@ int main(int argc, char *argv[])
                 printf(" %2c", text[i]);
                 i++;
             }
-            printf("\t|\t"); //putchar('\t');
+            sp_(15); putchar('\t'); sp_(15);
             while (j < file_size)
             {
                 if (text[j] == '\r' && text[j+1] == '\n') // Если среда Windows
@@ -55,7 +60,7 @@ int main(int argc, char *argv[])
                     j++;
                     printf(" %02X", text[j]);
                     j++;
-                    ln_();
+                    ln_(1);
                     break;
                 }
                 printf(" %02X", text[j]);
