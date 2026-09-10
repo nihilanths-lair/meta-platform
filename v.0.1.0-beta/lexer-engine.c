@@ -36,6 +36,8 @@ int main(int argc, char *argv[])
         size_t text_size = fread(text, sizeof (char), file_size, file);
         ln_(); printf(" text_size: %llu", text_size);
         ln_(); for (int i = 0; i < file_size; i++) putchar(text[i]);
+        ln_(); for (int i = 0; i < file_size; i++) printf(" %2c", text[i]);
+        ln_(); for (int i = 0; i < file_size; i++) printf(" %02X", text[i]);
         execution();
     }
     case 2: // Сканирование файла, без полной загрузки в память
