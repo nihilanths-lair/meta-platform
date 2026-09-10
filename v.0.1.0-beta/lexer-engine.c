@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
         size_t text_size = fread(text, sizeof (char), file_size, file);
         ln_(); printf(" text_size: %llu", text_size);
         ln_(); for (int i = 0; i < file_size; i++) putchar(text[i]);
+        execution();
     }
     case 2: // Сканирование файла, без полной загрузки в память
     {
@@ -54,7 +55,7 @@ void execution()
     switch (1) x_ // String-matching
     case 1:
     {
-        
+        // ... //
     }
     _x
 }
