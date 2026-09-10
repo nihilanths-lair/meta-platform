@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
                 printf(" %2c", text[i]);
                 i++;
             }
-            putchar('\t');
+            printf("\t|\t"); //putchar('\t');
             while (j < file_size)
             {
                 if (text[j] == '\r' && text[j+1] == '\n') // Если среда Windows
