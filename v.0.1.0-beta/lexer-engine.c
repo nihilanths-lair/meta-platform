@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
         for (int i = 0, string_length = 0, max_string_length = 0; i < file_size; i++)
         {
             if (text[i] == '\r' && text[i+1] == '\n') { if (string_length > max_string_length) { max_string_length = string_length; printf("\n max_string_length: %u", max_string_length); } } // Если среда Windows
-            putchar(text[i]);
             string_length++;
         }
         ln_(1);
@@ -53,7 +52,7 @@ int main(int argc, char *argv[])
             while (i < file_size)
             {
                 if (text[i] == '\r' && text[i+1] == '\n') break; // Если среда Windows
-                printf(" %2c", text[i]);
+                printf("%c", text[i]);
                 i++;
             }
             sp_(15); putchar('\t'); sp_(15);
