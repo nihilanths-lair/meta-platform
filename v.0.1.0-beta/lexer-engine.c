@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
                 {
                     if (text[current_pos] == '\r' && text[current_pos+1] == '\n')
                     {
-                        current_pos += 2;
+                        //current_pos += 2;
                         string_length += 2;
                         break; // Если среда Windows
                     }
@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
                     current_pos++;
                     string_length++;
                 }
-                sp_(string_length + (max_string_length - string_length)); // Выравнивание между первой и второй графой
+                sp_(max_string_length - string_length); // Выравнивание между первой и второй графой
                 string_length = 0;
                 current_pos = j;
                 while (current_pos < file_size) // Графа исходного кода в HEX-представлении
