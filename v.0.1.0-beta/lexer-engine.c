@@ -70,12 +70,12 @@ int main(int argc, char *argv[])
             {
                 if (text[j] == '\r' && text[j+1] == '\n') // Если среда Windows
                 {
-                    printf(" %02X", text[j]);
+                    printf(" %02X", text[j]); // Напечатали 0D (CR)
                     j++;
-                    printf(" %02X", text[j]);
+                    printf(" %02X", text[j]); // Напечатали 0A (LF)
                     j++;
                     //ln_(1);
-                    break;
+                    break; // Вышли из цикла HEX-строки!
                 }
                 printf(" %02X", text[j]);
                 j++;
