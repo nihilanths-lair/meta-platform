@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
                 printf("%c", text[i]);
                 i++;
             }
-            sp_(15); putchar('\t'); sp_(15);
+            sp_(8); putchar('\t'); sp_(8);
             while (j < file_size) // Графа исходного кода в HEX-представлении
             {
                 if (text[j] == '\r' && text[j+1] == '\n') // Если среда Windows
