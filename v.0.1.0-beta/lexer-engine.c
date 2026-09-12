@@ -62,8 +62,8 @@ int main(int argc, char *argv[])
                         max_string_length = string_length;
                         string_length = 0;
                         printf("\n max_string_length: %u", max_string_length);
-                        continue;
                     }
+                    continue;
                 }
                 current_pos++;
                 string_length++;
