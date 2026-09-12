@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
                     j++;
                     printf(" %02X", text[j]);
                     j++;
-                    ln_(1);
+                    //ln_(1);
                     break;
                 }
                 printf(" %02X", text[j]);
