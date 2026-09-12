@@ -84,6 +84,7 @@ int main(int argc, char *argv[])
                     }
                     printf("%c", text[current_pos]);
                     current_pos++;
+                    string_length++;
                 }
                 sp_(string_length + (max_string_length - string_length)); // Выравнивание между первой и второй графой
                 string_length = 0;
