@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
                 if (string_length > max_string_length)
                 {
                     max_string_length = string_length;
+                    string_length = 0;
                     printf("\n max_string_length: %u", max_string_length);
                 }
             }
