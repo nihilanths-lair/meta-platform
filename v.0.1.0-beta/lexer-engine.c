@@ -50,8 +50,9 @@ int main(int argc, char *argv[])
         printf(" text_size: %llu", text_size);
         ln_(1);
         anonymous_scope_(
+            int string_length = 0;
             int max_string_length = 0;
-            for (int current_pos = 0, string_length = 0; current_pos < file_size; )
+            for (int current_pos = 0; current_pos < file_size; )
             {
                 if (text[current_pos] == '\r' && text[current_pos+1] == '\n') // Если среда Windows
                 {
