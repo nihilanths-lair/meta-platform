@@ -79,12 +79,13 @@ int main(int argc, char *argv[])
                     if (text[current_pos] == '\r' && text[current_pos+1] == '\n')
                     {
                         current_pos += 2;
+                        string_length += 2;
                         break; // Если среда Windows
                     }
                     printf("%c", text[current_pos]);
                     current_pos++;
                 }
-                sp_(8); putchar('\t'); sp_(8);
+                sp_(string_length + (max_string_length - string_length));
                 current_pos = j;
                 while (current_pos < file_size) // Графа исходного кода в HEX-представлении
                 {
