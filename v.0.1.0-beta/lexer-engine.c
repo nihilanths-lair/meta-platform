@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
                     printf("%c", text[current_pos]);
                     current_pos++;
                 }
-                sp_(8); putchar('\t'); sp_(8); ln_(1);
+                sp_(8); putchar('\t'); sp_(8);
                 current_pos = j;
                 while (current_pos < file_size) // Графа исходного кода в HEX-представлении
                 {
@@ -94,12 +94,13 @@ int main(int argc, char *argv[])
                         current_pos++;
                         printf(" %02X", text[current_pos]); // Напечатали 0A (LF)
                         current_pos++;
-                        //ln_(1);
+                        ln_(1);
                         break; // Вышли из цикла HEX-строки!
                     }
                     printf(" %02X", text[current_pos]);
                     current_pos++;
                 }
+                //ln_(1);
             }
         )
         execution();
