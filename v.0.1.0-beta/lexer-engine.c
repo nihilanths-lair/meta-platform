@@ -49,25 +49,27 @@ int main(int argc, char *argv[])
         ln_(1);
         printf(" text_size: %llu", text_size);
         ln_(1);
-        for (int current_pos = 0, string_length = 0, max_string_length = 0; current_pos < file_size; )
-        {
-            if (text[current_pos] == '\r' && text[current_pos+1] == '\n') // Если среда Windows
+        anonymous_scope_(
+            int max_string_length = 0;
+            for (int current_pos = 0, string_length = 0; current_pos < file_size; )
             {
-                current_pos += 2;
-                string_length += 2;
-                if (string_length > max_string_length)
+                if (text[current_pos] == '\r' && text[current_pos+1] == '\n') // Если среда Windows
                 {
-                    max_string_length = string_length;
-                    string_length = 0;
-                    printf("\n max_string_length: %u", max_string_length);
+                    current_pos += 2;
+                    string_length += 2;
+                    if (string_length > max_string_length)
+                    {
+                        max_string_length = string_length;
+                        string_length = 0;
+                        printf("\n max_string_length: %u", max_string_length);
+                        continue;
+                    }
                 }
-            }
-            else
-            {
                 current_pos++;
                 string_length++;
             }
-        }
+            printf("\n checkpoint: max_string_length: %u", max_string_length);
+        )
         ln_(1);
         for (int i = 0, j; i < file_size; i++)
         {
