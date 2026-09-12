@@ -71,33 +71,37 @@ int main(int argc, char *argv[])
             }
             printf("\n checkpoint: max_string_length: %u", max_string_length);
             ln_(1);
-            for (int i = 0, j; i < file_size; i++)
+            for (int current_pos = 0, j; current_pos < file_size; )
             {
-                j = i;
-                while (i < file_size) // Графа исходного кода как есть
+                j = current_pos;
+                while (current_pos < file_size) // Графа исходного кода как есть
                 {
-                    if (text[i] == '\r' && text[i+1] == '\n') break; // Если среда Windows
-                    printf("%c", text[i]);
-                    i++;
-                }
-                sp_(8); putchar('\t'); sp_(8);
-                while (j < file_size) // Графа исходного кода в HEX-представлении
-                {
-                    if (text[j] == '\r' && text[j+1] == '\n') // Если среда Windows
+                    if (text[current_pos] == '\r' && text[current_pos+1] == '\n')
                     {
-                        printf(" %02X", text[j]); // Напечатали 0D (CR)
-                        j++;
-                        printf(" %02X", text[j]); // Напечатали 0A (LF)
-                        j++;
+                        current_pos += 2;
+                        break; // Если среда Windows
+                    }
+                    printf("%c", text[current_pos]);
+                    current_pos++;
+                }
+                sp_(8); putchar('\t'); sp_(8); ln_(1);
+                current_pos = j;
+                while (current_pos < file_size) // Графа исходного кода в HEX-представлении
+                {
+                    if (text[current_pos] == '\r' && text[current_pos+1] == '\n') // Если среда Windows
+                    {
+                        printf(" %02X", text[current_pos]); // Напечатали 0D (CR)
+                        current_pos++;
+                        printf(" %02X", text[current_pos]); // Напечатали 0A (LF)
+                        current_pos++;
                         //ln_(1);
                         break; // Вышли из цикла HEX-строки!
                     }
-                    printf(" %02X", text[j]);
-                    j++;
+                    printf(" %02X", text[current_pos]);
+                    current_pos++;
                 }
             }
         )
-        ln_(1);
         execution();
     }
     case 2: // Сканирование файла, без полной загрузки в память
