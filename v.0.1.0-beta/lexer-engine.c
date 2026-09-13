@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
                 if (text[current_pos] == '\r' && text[current_pos+1] == '\n') // Если среда Windows
                 {
                     current_pos += 2;
-                    string_length += 2;
+                    string_length += 2; // надо ли?
                     if (string_length > max_string_length)
                     {
                         max_string_length = string_length;
