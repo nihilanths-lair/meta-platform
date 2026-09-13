@@ -76,11 +76,11 @@ int main(int argc, char *argv[])
                 j = current_pos;
                 while (current_pos < file_size) // Графа исходного кода как есть
                 {
-                    if (text[current_pos] == '\r' && text[current_pos+1] == '\n')
+                    if (text[current_pos] == '\r' && text[current_pos+1] == '\n') // Если среда Windows
                     {
-                        //current_pos += 2;
-                        string_length += 2;
-                        break; // Если среда Windows
+                        current_pos += 2;
+                        string_length = 0;
+                        break;
                     }
                     printf("%c", text[current_pos]);
                     current_pos++;
