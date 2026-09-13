@@ -110,9 +110,9 @@ int main(int argc, char *argv[])
                     {
                         //sp_(1);
                         // Выводим перенос строки в HEX
-                        printf(" %02X %02X", text[current_pos], text[current_pos+1]); // Напечатали 0D (CR) и 0A (LF)
+                        printf(" %02X %02X\n", text[current_pos], text[current_pos+1]); // Напечатали 0D (CR) и 0A (LF)
                         current_pos += 2;
-                        ln_(1);
+                        //ln_(1);
                         break; // Вышли из цикла HEX-строки!
                     }
                     //sp_(1);
