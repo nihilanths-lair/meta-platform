@@ -50,10 +50,10 @@ int main(int argc, char *argv[])
         printf(" text_size: %llu", text_size);
         ln_(1);
         anonymous_scope_(
+            // === ШАГ 1: Оптимизированный расчет длины без лишних тактов ===
             int string_length = 0;
             int max_string_length = 0;
             int current_pos;
-            // === ШАГ 1: Честный расчет максимальной печатной длины строки ===
             for (current_pos = 0; current_pos < file_size; current_pos++)
             {
                 if (text[current_pos] == '\r' && text[current_pos+1] == '\n') // Если среда Windows
@@ -63,19 +63,16 @@ int main(int argc, char *argv[])
                         max_string_length = string_length;
                         printf("\n max_string_length: %u", max_string_length);
                     }
-                    string_length = 0; // ОБНУЛЯЕМ ВСЕГДА при встрече конца строки!
-                    current_pos++;     // Пропускаем \n, так как \r мы уже обработали
-                    continue;
+                    string_length = 0; // Сбросили счетчик текущей строки
+                    current_pos++;     // Пропустили \n
+                    continue;          // Никаких проверок, сразу уходим на следующий шаг
                 }
-                //
                 string_length++;
             }
-            // Если файл заканчивается без переноса строки, тоже фиксируем длину
-            if (current_pos == file_size)
-            {
-                string_length++;
-                if (string_length > max_string_length) max_string_length = string_length;
-            }
+            // === ИЗОЛИРОВАННЫЙ БЛОК ХВОСТА (Выполняется строго 1 раз за жизнь программы) ===
+            // Сюда мы гарантированно приземляемся, когда цикл закрылся сам.
+            // Если файл закончился без \r\n, в string_length останется «хвост» последней строки.
+            if (string_length > 0) { if (string_length > max_string_length) { max_string_length = string_length; } }
             printf("\n checkpoint: max_string_length (only print chars): %u\n", max_string_length);
             ln_(1);
             int j;
