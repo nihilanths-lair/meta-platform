@@ -79,23 +79,22 @@ int main(int argc, char *argv[])
                     if (text[current_pos] == '\r' && text[current_pos+1] == '\n') // Если среда Windows
                     {
                         current_pos += 2;
+                        string_length += 2;
                         break;
                     }
                     printf("%c", text[current_pos]);
                     current_pos++;
                     string_length++;
                 }
-                sp_(max_string_length - string_length - 2); // Выравнивание между первой и второй графой
+                sp_(max_string_length - string_length); // Выравнивание между первой и второй графой
                 string_length = 0;
                 current_pos = j;
                 while (current_pos < file_size) // Графа исходного кода в HEX-представлении
                 {
                     if (text[current_pos] == '\r' && text[current_pos+1] == '\n') // Если среда Windows
                     {
-                        printf(" %02X", text[current_pos]); // Напечатали 0D (CR)
-                        current_pos++;
-                        printf(" %02X", text[current_pos]); // Напечатали 0A (LF)
-                        current_pos++;
+                        printf(" %02X %02X", text[current_pos], text[current_pos+1]); // Напечатали 0D (CR) и 0A (LF)
+                        current_pos += 2;
                         ln_(1);
                         break; // Вышли из цикла HEX-строки!
                     }
