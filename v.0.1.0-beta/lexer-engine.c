@@ -79,14 +79,14 @@ int main(int argc, char *argv[])
                     if (text[current_pos] == '\r' && text[current_pos+1] == '\n') // Если среда Windows
                     {
                         current_pos += 2;
-                        string_length += 2;
+                        //string_length += 2;
                         break;
                     }
                     printf("%c", text[current_pos]);
                     current_pos++;
                     string_length++;
                 }
-                sp_(max_string_length - string_length); // Выравнивание между первой и второй графой
+                sp_(max_string_length - string_length - 2 + 8); // Выравнивание между первой и второй графой
                 string_length = 0;
                 current_pos = j;
                 while (current_pos < file_size) // Графа исходного кода в HEX-представлении
