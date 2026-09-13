@@ -93,8 +93,8 @@ int main(int argc, char *argv[])
                 {
                     if (text[current_pos] == '\r' && text[current_pos+1] == '\n') // Если среда Windows
                     {
-                        //sp_(1);
-                        printf("\x20%02X %02X", text[current_pos], text[current_pos+1]); // Напечатали 0D (CR) и 0A (LF)
+                        sp_(1);
+                        printf("%02X %02X", text[current_pos], text[current_pos+1]); // Напечатали 0D (CR) и 0A (LF)
                         current_pos += 2;
                         ln_(1);
                         break; // Вышли из цикла HEX-строки!
