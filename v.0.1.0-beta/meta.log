@@ -1,5 +1,4 @@
 Сумма: 15
-                                 !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~                                         Ё               ё       АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя
  Количество аргументов: 2
  Имя аргумента 0: lexer-engine.exe
  Имя аргумента 1: meta.txt
@@ -9,7 +8,7 @@
  max_string_length: 9
  checkpoint: max_string_length (only print chars): 9
 
-while (0)         77 68 69 6C 65 20 28 30 29 0D 0A
-{                 7B 0D 0A
+vghkd '/(         77 68 69 6C 65 20 28 30 29 0D 0A
+z                 7B 0D 0A
                   20 20 20 20 0D 0A
-}                 7D
+|                 7D
