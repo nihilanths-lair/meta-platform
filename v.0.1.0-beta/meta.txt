@@ -1,3 +1,4 @@
+goto text_program_1;
 while ('¨')
 {
     
@@ -6,3 +7,4 @@ while ('¸')
 {
     
 }
+text_program_1:

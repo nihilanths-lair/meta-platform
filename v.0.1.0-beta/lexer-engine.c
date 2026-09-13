@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
         0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xFF
     };
     #define fch_(arg) fch[arg]
+    /*
     // Передаем весь блок инструкций прямо внутрь макроса
     anonymous_scope_(
         int x = 5;
@@ -59,11 +60,12 @@ int main(int argc, char *argv[])
         printf("Сумма: %d\n", x + y);
     )
     // Здесь переменные x и y больше не существуют
+    */
     printf(" Количество аргументов: %d", argc);
     for (int i = 0; i < argc; i++)
     {
         ln_(1);
-        printf(" Имя аргумента %d: %s", i, argv[i]);
+        printf(" Имя аргумента %d: %s", i+1, argv[i]);
     }
     FILE *file = fopen(argv[1], "rb");
     if (file == NULL)
@@ -80,11 +82,10 @@ int main(int argc, char *argv[])
         long file_size = ftell(file);
         rewind(file);
         ln_(1);
-        printf(" file_size: %lu", file_size);
+        printf(" Размер файла (байт): %lu", file_size);
         unsigned char *text = (unsigned char *) malloc(file_size);
         size_t text_size = fread(text, sizeof (char), file_size, file);
-        ln_(1);
-        printf(" text_size: %llu", text_size);
+        if (file_size == text_size) printf("\n Количество считанных байт: %llu", text_size);
         ln_(1);
         anonymous_scope_(
             // === ШАГ 1: Оптимизированный расчет длины без лишних тактов ===

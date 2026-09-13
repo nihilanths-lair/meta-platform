@@ -1,18 +1,19 @@
-Сумма: 15
  Количество аргументов: 2
- Имя аргумента 0: lexer-engine.exe
- Имя аргумента 1: meta.txt
- file_size: 48
- text_size: 48
+ Имя аргумента 1: lexer-engine.exe
+ Имя аргумента 2: meta.txt
+ Размер файла (байт): 87
+ Количество считанных байт: 87
 
- max_string_length: 11
- checkpoint: max_string_length (only print chars): 11
+ max_string_length: 20
+ checkpoint: max_string_length (only print chars): 20
 
-while ('Ё')         77 68 69 6C 65 20 28 27 A8 27 29 0D 0A
-{                   7B 0D 0A
-                    20 20 20 20 0D 0A
-}                   7D 0D 0A
-while ('ё')         77 68 69 6C 65 20 28 27 B8 27 29 0D 0A
-{                   7B 0D 0A
-                    20 20 20 20 0D 0A
-}                   7D
+goto text_program_1;         67 6F 74 6F 20 74 65 78 74 5F 70 72 6F 67 72 61 6D 5F 31 3B 0D 0A
+while ('Ё')                  77 68 69 6C 65 20 28 27 A8 27 29 0D 0A
+{                            7B 0D 0A
+                             20 20 20 20 0D 0A
+}                            7D 0D 0A
+while ('ё')                  77 68 69 6C 65 20 28 27 B8 27 29 0D 0A
+{                            7B 0D 0A
+                             20 20 20 20 0D 0A
+}                            7D 0D 0A
+text_program_1:              74 65 78 74 5F 70 72 6F 67 72 61 6D 5F 31 3A
