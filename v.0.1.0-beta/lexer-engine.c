@@ -75,7 +75,6 @@ int main(int argc, char *argv[])
             {
                 string_length++;
                 if (string_length > max_string_length) max_string_length = string_length;
-                break;
             }
             printf("\n checkpoint: max_string_length (only print chars): %u\n", max_string_length);
             ln_(1);
@@ -111,13 +110,13 @@ int main(int argc, char *argv[])
                     {
                         //sp_(1);
                         // Выводим перенос строки в HEX
-                        printf("%02X %02X", text[current_pos], text[current_pos+1]); // Напечатали 0D (CR) и 0A (LF)
+                        printf(" %02X %02X", text[current_pos], text[current_pos+1]); // Напечатали 0D (CR) и 0A (LF)
                         current_pos += 2;
                         ln_(1);
                         break; // Вышли из цикла HEX-строки!
                     }
                     //sp_(1);
-                    printf("%02X", text[current_pos]);
+                    printf(" %02X", text[current_pos]);
                     current_pos++;
                 }
                 //ln_(1);
